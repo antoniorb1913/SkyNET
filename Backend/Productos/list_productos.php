@@ -181,7 +181,7 @@ $marcas = mysqli_query( $conexion, $consulta_marca);
         echo "<a href='xml.php?nombre=".$filtro_nombre."&categoria=".$filtro_categoria."&marca=".$filtro_marca."' class='boton'>Exportar XML</a>&nbsp;&nbsp;";
     ?>
     <div class="logo">
-        <img src="/imagenes/Logo.png" style="heght: 150px; width: 150px;">
+        <img src="imagenes/logo.png" style="heght: 150px; width: 150px;">
     </div>
     </div>
     <br>
@@ -206,8 +206,8 @@ $marcas = mysqli_query( $conexion, $consulta_marca);
                     <td>".$fila['peso']."</td>
                     <td>".$fila['categoria']."</td>
                     <td>".$fila['marca']."</td> 
-                    <td> <a href='edit_productos.php? id=".$fila['id']."'> <img src='editar.png' class='bmea'> </a>
-                    <a href='borrar_productos.php? id=".$fila['id']."'> <img src='borrar.png' class='bmea'> </a></td></tr>";
+                    <td> <a href='edit_productos.php? id=".$fila['id']."'> <img src='imagenes/editar.png' class='bmea'> </a>
+                    <a href='borrar_productos.php? id=".$fila['id']."'> <img src='imagenes/borrar.png' class='bmea'> </a></td></tr>";
                     
                 }
 
