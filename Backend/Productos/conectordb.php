@@ -1,6 +1,6 @@
 <?php 
 $usuario = "root";
-$password = "oVP7zsaP";
+$password = "root";
 $servidor = "localhost";
 $basededatos = "SkyNET";
 
