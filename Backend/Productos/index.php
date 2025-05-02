@@ -74,7 +74,7 @@
     <br>
     <div class="titulo">
     <div class="logo">
-        <img src="/imagenes/Logo sin fondo.png" style="heght: 300px; width: 300px;">
+        <img src="/imagenes/Logo.png" style="heght: 300px; width: 300px;">
     </div>
     <br>
     <br>

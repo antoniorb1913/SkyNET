@@ -181,7 +181,7 @@ $marcas = mysqli_query( $conexion, $consulta_marca);
         echo "<a href='xml.php?nombre=".$filtro_nombre."&categoria=".$filtro_categoria."&marca=".$filtro_marca."' class='boton'>Exportar XML</a>&nbsp;&nbsp;";
     ?>
     <div class="logo">
-        <img src="/Logo sin fondo.png" style="heght: 150px; width: 150px;">
+        <img src="/imagenes/Logo.png" style="heght: 150px; width: 150px;">
     </div>
     </div>
     <br>
