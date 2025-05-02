@@ -90,7 +90,7 @@
 </head>
 <body>
     <h2>Formulario de Productos</h2>
-    <form id="formularioproductos" method="post" action="/alta_productos.php">
+    <form id="formularioproductos" method="post" action="alta_productos.php">
         <label for="referencia">Referencia:</label>
         <input type="text" name="referencia" id='referencia' required>
         <span class="error" id="errorReferencia"></span>

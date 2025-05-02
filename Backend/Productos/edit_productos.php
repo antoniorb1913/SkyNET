@@ -106,7 +106,7 @@ if (isset($_REQUEST['id'])) {
         <h1><?php echo $editar?"Editar":"Nuevo";?> Producto</h1>  
     </div>
     <div class="formulario">
-        <form id="formularioproductos" method="post" action="/alta_productos.php">
+        <form id="formularioproductos" method="post" action="alta_productos.php">
             <?php
             if ($editar) {
                 echo '<input type="hidden" value="'.$producto['id'].'"name="idProducto"/>';

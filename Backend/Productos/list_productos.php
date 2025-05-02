@@ -150,15 +150,15 @@ $marcas = mysqli_query( $conexion, $consulta_marca);
         background-color: #0056b3;
     }
     .bmea {
-    width: 18px;  /* Ajusta el ancho según necesites */
-    height: 18px; /* Ajusta la altura según necesites */
+    width: 18px;
+    height: 18px;
     }
 
 </style>
 </head>
 <body>
     
-    <form id="formularioproductos" method="post" action="/list_productos.php">
+    <form id="formularioproductos" method="post" action="list_productos.php">
     <div class="filtros" style="display: flex; gap: 5px;">
     <label for="nombre">Nombre:</label>
     <input type="text" name="nombre" id='nombre' style="width: 500px; height: 15px; margin-right: 30px; margin-left: 10px;">
