@@ -387,8 +387,10 @@ function removeFilter($tipo, $id) {
                 <div class="new-badge">Nuevo</div>
               <?php endif; ?>
               
-              <img src="/api/placeholder/150/150" alt="<?= htmlspecialchars($producto['nombre']) ?>">
-              <h4><?= htmlspecialchars($producto['nombre']) ?></h4>
+              <a href="producto.php?id=<?= $producto['id'] ?>">
+                <img src="/api/placeholder/150/150" alt="<?= htmlspecialchars($producto['nombre']) ?>">
+              </a>
+              <h4><a href="producto.php?id=<?= $producto['id'] ?>"><?= htmlspecialchars($producto['nombre']) ?></a></h4>
               <div class="product-specs">
                 <p><?= htmlspecialchars($producto['descripcion']) ?></p>
               </div>

@@ -673,3 +673,240 @@ body {
     font-size: 13px;
   }
 }
+/* Estilos adicionales para el carrito y enlaces de productos */
+
+/* Estilos para enlaces en títulos de productos */
+.product-card h4 a {
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.product-card h4 a:hover {
+  color: #007bff;
+}
+
+/* Estilos para enlaces en imágenes de productos */
+.product-card a {
+  display: block;
+  text-decoration: none;
+}
+
+/* Notificación del carrito */
+.cart-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  border-radius: 8px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  max-width: 300px;
+  transform: translateX(110%);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+.cart-notification.show {
+  transform: translateX(0);
+}
+
+.cart-notification i {
+  color: #4CAF50;
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.cart-notification p {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* Contador del carrito */
+.cart-counter {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #ff4757;
+  color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-size: 11px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+/* Iconos con posición relativa para el contador */
+.icons a {
+  position: relative;
+}
+
+/* Estilos para el minicarrito */
+.minicarrito {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  width: 350px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+  z-index: 1000;
+  display: none;
+}
+
+.minicarrito-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.minicarrito-header h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.cerrar-minicarrito {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.minicarrito-items {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.minicarrito-item {
+  display: flex;
+  padding: 12px 15px;
+  border-bottom: 1px solid #eee;
+  position: relative;
+}
+
+.minicarrito-item img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.minicarrito-item-info {
+  flex-grow: 1;
+}
+
+.minicarrito-item-info h4 {
+  margin: 0 0 5px;
+  font-size: 14px;
+}
+
+.minicarrito-item-price {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+}
+
+.eliminar-item {
+  background: none;
+  border: none;
+  color: #ccc;
+  cursor: pointer;
+  font-size: 14px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.eliminar-item:hover {
+  color: #ff4757;
+}
+
+.minicarrito-empty {
+  padding: 30px 15px;
+  text-align: center;
+}
+
+.minicarrito-empty i {
+  font-size: 50px;
+  color: #ddd;
+  margin: 15px 0;
+}
+
+.minicarrito-empty p {
+  margin-bottom: 20px;
+}
+
+.minicarrito-footer {
+  padding: 15px;
+  border-top: 1px solid #eee;
+}
+
+.minicarrito-total {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.minicarrito-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-ver-carrito, .btn-checkout, .btn-seguir-comprando {
+  padding: 8px 15px;
+  border-radius: 4px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 14px;
+}
+
+.btn-ver-carrito {
+  background-color: #f1f1f1;
+  color: #333;
+  flex: 1;
+  margin-right: 10px;
+}
+
+.btn-checkout {
+  background-color: #007bff;
+  color: white;
+  flex: 1;
+}
+
+.btn-seguir-comprando {
+  background-color: #007bff;
+  color: white;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+/* Estilos para botón de añadir al carrito en página de detalle */
+.add-to-cart-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-to-cart-btn i {
+  margin-right: 8px;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #0056b3;
+}
