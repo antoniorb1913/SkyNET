@@ -386,7 +386,9 @@ function buildFilterUrl($nuevos_params = []) {
             
             // Funciones auxiliares copiadas de carrito.js
             function actualizarContadorCarrito() {
-                const contador = carrito.reduce((total, item) => total + item.cantidad, 0);
+                // Siempre obtener el carrito más reciente desde localStorage
+                const carritoActual = JSON.parse(localStorage.getItem('skynet_carrito')) || [];
+                const contador = carritoActual.reduce((total, item) => total + item.cantidad, 0);
                 
                 // Buscar o crear el elemento contador en el icono del carrito
                 let contadorElement = document.querySelector('.cart-counter');
