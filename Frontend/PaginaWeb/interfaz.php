@@ -248,8 +248,6 @@ function removeFilter($tipo, $id) {
       <button><i class="fas fa-search"></i></button>
     </div>
     <div class="icons">
-      <div class="user-dropdown">
-        <a href="#" class="user-icon"><i class="fas fa-user"></i></a>
         <div class="dropdown-content">
           <?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true): ?>
             <p>Bienvenido, <?php echo htmlspecialchars($_SESSION["nombre"]); ?></p>
