@@ -80,7 +80,7 @@
             width: 35%;
         }
         .peso input {
-            width: 35%;
+            width: 20%;
             
         }
         h2 {
@@ -130,8 +130,11 @@
         <br>
         <div class="peso" style="display: flex;">
             <label for="peso">Peso:</label>
-            <input type="number" name="peso" id='peso' style="margin-left: 20px; ">
+            <input type="number" name="peso" id='peso' style="margin-left: 20px; margin-right: 20px; ">
             <span class="error" id="errorPeso"></span>
+            <label for="imagen">Imagenes:</label>
+            <input type="file" name="imagen" id='imagen' style="width: 420px; margin-left: 30px; ">
+            <span class="error" id="errorImagen"></span>
         </div>
         <br>
         <div class="lista" style="display: flex; gap: 5px;">
