@@ -4,7 +4,7 @@ session_start();
  
 // Verificar si el usuario ya ha iniciado sesión
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: index.php");
+    header("location: interfaz.php");
     exit;
 }
  
@@ -37,7 +37,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         // Preparar una consulta select
         $sql = "SELECT id, nombre, email, contrasena FROM clientes WHERE email = ?";
         
-        if($stmt = mysqli_prepare($conexion, $sql)){
+        if($stmt = mysqli_prepare($conn, $sql)){
             // Vincular variables a la consulta preparada como parámetros
             mysqli_stmt_bind_param($stmt, "s", $param_email);
             
@@ -65,7 +65,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["email"] = $email;                            
                             
                             // Redirigir al usuario a la página de inicio
-                            header("location: index.php");
+                            header("location: interfaz.php");
                         } else{
                             // La contraseña no es válida
                             $login_err = "Email o contraseña incorrectos.";
@@ -85,7 +85,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     
     // Cerrar conexión
-    mysqli_close($conexion);
+    mysqli_close($conn);
 }
 ?>
 

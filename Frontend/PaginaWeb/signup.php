@@ -31,7 +31,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         // Preparar una consulta
         $sql = "SELECT id FROM clientes WHERE email = ?";
         
-        if($stmt = mysqli_prepare($conexion, $sql)){
+        if($stmt = mysqli_prepare($conn, $sql)){
             // Vincular variables a la consulta preparada como parámetros
             mysqli_stmt_bind_param($stmt, "s", $param_email);
             
@@ -139,7 +139,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     
     // Cerrar conexión
-    mysqli_close($conexion);
+    mysqli_close($conn);    
 }
 ?>
 
