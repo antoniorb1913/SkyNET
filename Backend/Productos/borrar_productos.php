@@ -1,7 +1,7 @@
 <?php 
 
 $respuesta = $_GET;
-require_once('conectordb.php');
+require_once(__DIR__ . '/../../conectordb/conectordb.php');
 
 
 $idProductos = intval($_GET['id']); // Asegurar que sea un número

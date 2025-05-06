@@ -1,7 +1,7 @@
 <?php 
 
 $respuesta = $_REQUEST;
-require_once('conectordb.php');
+require_once(__DIR__ . '/../../conectordb/conectordb.php');
 
 $editar=FALSE;
 if (isset($_REQUEST['id'])) {

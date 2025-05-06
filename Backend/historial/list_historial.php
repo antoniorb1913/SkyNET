@@ -1,21 +1,23 @@
 <?php
-    require_once('conectordb.php');
+    require_once(__DIR__ . '/../../conectordb/conectordb.php');
 
     $consulta_historial = "SELECT 
+    ventas.id AS IDVenta,  -- Agregamos la columna IDVenta
     clientes.nombre AS NombreCliente,
-    GROUP_CONCAT(CONCAT(productos.nombre, ' (x', linea_carrito.cantidad, ') ', linea_carrito.precio, '€') ORDER BY productos.nombre SEPARATOR '<br>') AS ProductosComprados,
+    GROUP_CONCAT(CONCAT(productos.nombre, ' (x', linea_carrito.cantidad, ') ', linea_carrito.precio, '€') 
+    ORDER BY productos.nombre SEPARATOR '<br>') AS ProductosComprados,
     ventas.fecha_previstaEntrega AS FechaEntrega,
     SUM(linea_carrito.cantidad * linea_carrito.precio) AS Subtotal,
     impuestos.porcentaje AS IVA,
     SUM(ventas.importe_total) AS Total
-FROM clientes
-JOIN carrito ON clientes.id = carrito.cliente_id
-JOIN linea_carrito ON carrito.id = linea_carrito.carrito_id
-JOIN productos ON linea_carrito.producto_id = productos.id
-JOIN ventas ON carrito.id = ventas.carrito_id
-JOIN impuestos ON ventas.impuesto_id = impuestos.id
-GROUP BY clientes.id, ventas.id, impuestos.porcentaje
-ORDER BY clientes.nombre, ventas.fecha_previstaEntrega";
+    FROM clientes
+    JOIN carrito ON clientes.id = carrito.cliente_id
+    JOIN linea_carrito ON carrito.id = linea_carrito.carrito_id
+    JOIN productos ON linea_carrito.producto_id = productos.id
+    JOIN ventas ON carrito.id = ventas.carrito_id
+    JOIN impuestos ON ventas.impuesto_id = impuestos.id
+    GROUP BY ventas.id, clientes.id, impuestos.porcentaje
+    ORDER BY clientes.nombre, ventas.fecha_previstaEntrega";
 
 $filtro_nombre = '';
 
@@ -145,6 +147,10 @@ $listado_historial = mysqli_query($conexion, $consulta_historial);
     width: 18px;
     height: 18px;
     }
+    .descargar-col {
+    width: 50px;
+    text-align: center;
+}
 
 </style>
 </head>
@@ -164,23 +170,20 @@ $listado_historial = mysqli_query($conexion, $consulta_historial);
         <?php
             echo"<style>table{border: 1px solid rgb(89, 97, 168); width: 100%;} td{border: 1px solid rgb(71, 94, 143)} tr{border: 1px solid rgb(71, 96, 125)} </style>";
                     
-            echo "<table border='1'>
-            <tr>
-                <th>Nombre Cliente</th>
-                <th>Productos Comprados</th>
-                <th>Fecha Entrega</th>
-                <th>Subtotal (€)</th>
-                <th>IVA (%)</th>
-                <th>Total (€)</th>
-            </tr>";
+            echo "<table border='1'><tr><th>id</th><th>Nombre Cliente</th><th>Productos Comprados</th><th>Fecha Entrega</th>
+            <th>Subtotal (€)</th><th>IVA (%)</th><th>Total (€)</th></th><th class='descargar-col'>Descargar</th></tr>";
+
             while ($fila = mysqli_fetch_array($listado_historial)) {
                 echo "<tr>
+                    <td>".$fila['IDVenta']."</td>
                     <td>".$fila['NombreCliente']."</td>
                     <td>".nl2br($fila['ProductosComprados'])."</td>
                     <td>".$fila['FechaEntrega']."</td>
                     <td>".$fila['Subtotal']." €</td>
                     <td>".$fila['IVA']."%</td>
                     <td>".$fila['Total']." €</td>
+                    <td class='descargar-col'> <a href='descargar_resumen.php?id=".$fila['IDVenta']."'> 
+                    <img src='descargar.png' class='bmea'> </a></td>
                 </tr>";
             }
             echo  "</table>";

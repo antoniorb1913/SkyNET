@@ -1,7 +1,7 @@
 <?php
 $respuesta = $_POST;
 
-require_once('conectordb/conectordb.php');
+require_once('conectordb.php');
 
 $consulta = "INSERT INTO productos (referencia,nombre,descripcion,precio,stock,alto,ancho,largo,
                         peso, categoria_id, marca_id)

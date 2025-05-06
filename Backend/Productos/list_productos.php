@@ -1,5 +1,5 @@
 <?php
-    require_once('../conectordb/conectordb.php');
+    require_once(__DIR__ . '/../../conectordb/conectordb.php');
 
 $consulta_productos = "SELECT pr.id as id, pr.referencia as referencia, pr.nombre as nombre, pr.descripcion as descripcion, pr.precio as precio, 
                     pr.stock as stock, pr.alto as alto, pr.ancho as ancho, pr.largo as largo, pr.peso as peso, 

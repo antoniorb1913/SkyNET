@@ -1,6 +1,6 @@
 <?php
     $respuesta = $_REQUEST;
-    require_once('conectordb.php');
+    require_once(__DIR__ . '/../../conectordb/conectordb.php');
 
     $consulta_categorias = "SELECT * FROM categorias";
     $categorias = mysqli_query($conexion, $consulta_categorias) or die("Error en la consulta");
