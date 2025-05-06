@@ -234,7 +234,7 @@ function removeFilter($tipo, $id) {
   <script src="../Scripts/carrito.js"></script>
 </head>
 <body>
-  <header>
+<header>
     <div class="logo">SkyNet</div>
     <nav>
       <a href="#">Inicio</a>
@@ -248,7 +248,18 @@ function removeFilter($tipo, $id) {
       <button><i class="fas fa-search"></i></button>
     </div>
     <div class="icons">
-      <a href="#"><i class="fas fa-user"></i></a>
+      <div class="user-dropdown">
+        <a href="#" class="user-icon"><i class="fas fa-user"></i></a>
+        <div class="dropdown-content">
+          <?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true): ?>
+            <p>Bienvenido, <?php echo htmlspecialchars($_SESSION["nombre"]); ?></p>
+            <a href="logout.php">Cerrar sesión</a>
+          <?php else: ?>
+            <a href="login.php">Iniciar sesión</a>
+            <a href="signup.php">Registrarse</a>
+          <?php endif; ?>
+        </div>
+      </div>
       <a href="#"><i class="fas fa-shopping-cart"></i></a>
     </div>
   </header>
