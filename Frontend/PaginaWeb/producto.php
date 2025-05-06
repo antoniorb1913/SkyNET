@@ -74,7 +74,7 @@ function buildFilterUrl($nuevos_params = []) {
         <div class="logo">SkyNet</div>
         <nav>
         <a href="#">Inicio</a>
-        <a href="#">Productos</a>
+        <a href="interfaz.php">Productos</a>
         <a href="#">Ofertas</a>
         <a href="#">Soporte</a>
         <a href="#">Contacto</a>
