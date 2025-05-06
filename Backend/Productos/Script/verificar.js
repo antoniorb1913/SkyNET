@@ -29,6 +29,9 @@ function validarCampo() {
     let peso = document.getElementById('peso').value;
     let errorPeso = document.getElementById('errorPeso');
 
+    let foto = document.getElementById('foto').value;
+    let errorFoto = document.getElementById('errorFoto');
+
     
     // Valida que la referencia tenga entre 2 y 50 caracteres
     if (referencia.length < 2 || referencia.length > 50) {
