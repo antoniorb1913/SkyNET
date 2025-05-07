@@ -12,10 +12,10 @@ if ($conexion->connect_error) {
 
 // Obtener el producto
 $sql = "SELECT p.*, c.nombre as categoria, m.nombre as marca 
-         FROM productos p 
-         LEFT JOIN categorias c ON p.categoria_id = c.id 
-         LEFT JOIN marcas m ON p.marca_id = m.id 
-         WHERE p.id = ? AND p.deleted_at IS NULL";
+        FROM productos p 
+        LEFT JOIN categorias c ON p.categoria_id = c.id 
+        LEFT JOIN marcas m ON p.marca_id = m.id 
+        WHERE p.id = ? AND p.deleted_at IS NULL";
 $stmt = $conexion->prepare($sql);
 $stmt->bind_param("i", $id);
 $stmt->execute();
@@ -111,7 +111,7 @@ function buildFilterUrl($nuevos_params = []) {
                         <?php 
                         $imagen_url = !empty($producto['imagen']) ? htmlspecialchars($producto['imagen']) : '/api/placeholder/600/600';
                         ?>
-                        <img src="../Imagenes_productos/<?= $producto['id'] ?>.jpg" alt="<?= htmlspecialchars($producto['nombre']) ?>" class="main-image">
+                        <img src="../Imagenes_productos/<?= $producto['id'] ?>.jpg" alt="<?= htmlspecialchars($producto['nombre']) ?>" class="main-image" style="width: 55%; height: 55%;">
                     </div>
                     
                     <div class="product-info">
