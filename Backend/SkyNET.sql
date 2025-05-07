@@ -18,6 +18,7 @@ create table productos (  /*gestor de stock*/
     created_at datetime,
     deleted_at datetime,
     updated_at datetime
+
 );
 
 create table categorias (
@@ -103,17 +104,9 @@ create table metodo_pago (
     updated_at datetime
 
 );
-/*AÑADIR A LA BASE DE DATOS*/
 
-create table imagenes_productos (
-    id int primary key auto_increment,
-    producto_id int,
-    alt varchar(50),
-    nombre varchar(100)
 
-);
-alter table imagenes_productos add foreign key (producto_id) references productos(id); 
-
+alter table productos add imagen varchar(255);
 
 /* FOREIGN KEYS */
 
