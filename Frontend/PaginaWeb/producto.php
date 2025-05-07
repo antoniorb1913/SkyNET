@@ -71,30 +71,21 @@ function buildFilterUrl($nuevos_params = []) {
 </head>
 <body>
     <header>
-        <div class="logo">SkyNet</div>
+        <div class="logo">SkyNET</div>
         <nav>
-        <a href="#">Inicio</a>
-        <a href="interfaz.php">Productos</a>
-        <a href="#">Ofertas</a>
-        <a href="#">Soporte</a>
-        <a href="#">Contacto</a>
+            <a href="index.php">Inicio</a>
+            <a href="interfaz.php">Productos</a>
+            <a href="#">Ofertas</a>
+            <a href="#">Soporte</a>
+            <a href="#">Contacto</a>
         </nav>
         <div class="search-container">
-        <input type="text" placeholder="Buscar productos...">
-        <button><i class="fas fa-search"></i></button>
+            <input type="text" placeholder="Buscar productos...">
+            <button><i class="fas fa-search"></i></button>
         </div>
         <div class="icons">
-            <div class="dropdown-content">
-            <?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true): ?>
-                <p>Bienvenido, <?php echo htmlspecialchars($_SESSION["nombre"]); ?></p>
-                <a href="logout.php">Cerrar sesión</a>
-            <?php else: ?>
-                <a href="login.php">Iniciar sesión</a>
-                <a href="signup.php">Registrarse</a>
-            <?php endif; ?>
-            </div>
-        </div>
-        <a href="#"><i class="fas fa-shopping-cart"></i></a>
+            <a href="#"><i class="fas fa-user"></i></a>
+            <a href="#"><i class="fas fa-shopping-cart"></i></a>
         </div>
     </header>
 

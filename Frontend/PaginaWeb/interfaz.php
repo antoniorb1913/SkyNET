@@ -234,11 +234,11 @@ function removeFilter($tipo, $id) {
   <script src="../Scripts/carrito.js"></script>
 </head>
 <body>
-<header>
+  <header>
     <div class="logo">SkyNet</div>
     <nav>
       <a href="#">Inicio</a>
-      <a href="interfaz.php">Productos</a>
+      <a href="#">Productos</a>
       <a href="#">Ofertas</a>
       <a href="#">Soporte</a>
       <a href="#">Contacto</a>
@@ -248,16 +248,7 @@ function removeFilter($tipo, $id) {
       <button><i class="fas fa-search"></i></button>
     </div>
     <div class="icons">
-        <div class="dropdown-content">
-          <?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true): ?>
-            <p>Bienvenido, <?php echo htmlspecialchars($_SESSION["nombre"]); ?></p>
-            <a href="logout.php">Cerrar sesión</a>
-          <?php else: ?>
-            <a href="login.php">Iniciar sesión</a>
-            <a href="signup.php">Registrarse</a>
-          <?php endif; ?>
-        </div>
-      </div>
+      <a href="#"><i class="fas fa-user"></i></a>
       <a href="#"><i class="fas fa-shopping-cart"></i></a>
     </div>
   </header>
@@ -349,6 +340,7 @@ function removeFilter($tipo, $id) {
         <div class="view-options">
           <span>Ver:</span>
           <button class="view-grid active"><i class="fas fa-th"></i></button>
+          <button class="view-list"><i class="fas fa-list"></i></button>
           <span>Mostrar:</span>
           <select onchange="window.location.href=this.value">
             <option value="<?= buildFilterUrl(['mostrar' => 12, 'page' => 1]) ?>" <?= $filtros['mostrar'] == 12 ? 'selected' : '' ?>>12</option>
