@@ -393,7 +393,7 @@ function removeFilter($tipo, $id) {
                 <p><?= htmlspecialchars($producto['descripcion']) ?></p>
               </div>
               <p class="price">€<?= number_format($producto['precio'], 2, ',', '.') ?></p>
-              <button>Comprar</button>
+              <button>Añadir al carrito</button>
             </div>
           <?php endforeach; ?>
         <?php endif; ?>
