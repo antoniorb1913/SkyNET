@@ -105,9 +105,9 @@ function validarCampo() {
         errorImagen.textContent = "Debe seleccionar una imagen.";
         control = false;
     } else {
-        let extensionesPermitidas = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+        let extensionesPermitidas = /(\.jpg|\.jpeg|\.png|\.webp)$/i;
         if (!extensionesPermitidas.exec(imagen)) {
-            errorImagen.textContent = "Formato de imagen no válido. Solo se permiten JPG, JPEG, PNG o GIF.";
+            errorImagen.textContent = "Formato de imagen no válido. Solo se permiten JPG, JPEG, PNG o WEBP.";
             control = false;
         } else {
             errorImagen.textContent = "";
@@ -115,7 +115,6 @@ function validarCampo() {
     }
     
     if (control == true){
-
         formularioproductos.submit(document.getElementById('formularioproductos'));
         
     } else {
