@@ -20,7 +20,7 @@
     $target_dir = "../../Frontend/imagenes_productos/";
 
     // Obtener el nombre personalizado ingresado en el formulario
-    $nombre_imagen_personalizado = $respuesta['imagen']; // El campo donde introduces el nombre de la imagen
+    $nombre_imagen_personalizado = $respuesta['nimagen']; // El campo donde introduces el nombre de la imagen
     $imageFileType = strtolower(pathinfo($_FILES["imagen"]["name"], PATHINFO_EXTENSION));
     
     // Construir la ruta con el nuevo nombre

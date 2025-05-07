@@ -134,7 +134,7 @@
         <br>
         <div class="cuimagen" style="display: flex;">
             <label for="nimagen" style="margin-right: 10px;">Nombre imagen:</label>
-            <input type="text" name="noimagen" id='noimagen' style="width: 200px;" >
+            <input type="text" name="nimagen" id='nimagen' style="width: 200px;" >
             <input type="file" name="imagen" id='imagen' style="width: 380px; margin-left: 30px; ">
             <span class="error" id="errorImagen"></span>
         </div>
