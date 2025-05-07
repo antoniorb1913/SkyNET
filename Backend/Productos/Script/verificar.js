@@ -29,8 +29,8 @@ function validarCampo() {
     let peso = document.getElementById('peso').value;
     let errorPeso = document.getElementById('errorPeso');
 
-    let foto = document.getElementById('foto').value;
-    let errorFoto = document.getElementById('errorFoto');
+    let imagen = document.getElementById('imagen').value;
+    let errorImagen = document.getElementById('errorImagen');
 
     
     // Valida que la referencia tenga entre 2 y 50 caracteres
@@ -99,6 +99,19 @@ function validarCampo() {
         control = false;
     } else {
         document.getElementById('errorPeso').textContent = "";
+    }
+    
+    if (imagen === "") {
+        errorImagen.textContent = "Debe seleccionar una imagen.";
+        control = false;
+    } else {
+        let extensionesPermitidas = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+        if (!extensionesPermitidas.exec(imagen)) {
+            errorImagen.textContent = "Formato de imagen no válido. Solo se permiten JPG, JPEG, PNG o GIF.";
+            control = false;
+        } else {
+            errorImagen.textContent = "";
+        }
     }
     
     if (control == true){
