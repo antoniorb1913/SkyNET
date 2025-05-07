@@ -41,7 +41,6 @@ $sql = "SELECT p.*, c.nombre as categoria, m.nombre as marca
         LEFT JOIN categorias c ON p.categoria_id = c.id 
         LEFT JOIN marcas m ON p.marca_id = m.id 
         WHERE p.deleted_at IS NULL";
-
 // Aplicar filtros
 $params = [];
 $tipos = "";
@@ -386,9 +385,8 @@ function removeFilter($tipo, $id) {
               ?>
                 <div class="new-badge">Nuevo</div>
               <?php endif; ?>
-              
               <a href="producto.php?id=<?= $producto['id'] ?>">
-                <img src="/api/placeholder/150/150" alt="<?= htmlspecialchars($producto['nombre']) ?>">
+                <img src="../Imagenes_productos/<?= $producto['id'] ?>.jpg" alt="<?= htmlspecialchars($producto['nombre']) ?>">
               </a>
               <h4><a href="producto.php?id=<?= $producto['id'] ?>"><?= htmlspecialchars($producto['nombre']) ?></a></h4>
               <div class="product-specs">

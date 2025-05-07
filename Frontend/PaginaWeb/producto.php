@@ -111,14 +111,7 @@ function buildFilterUrl($nuevos_params = []) {
                         <?php 
                         $imagen_url = !empty($producto['imagen']) ? htmlspecialchars($producto['imagen']) : '/api/placeholder/600/600';
                         ?>
-                        <img src="<?= $imagen_url ?>" alt="<?= htmlspecialchars($producto['nombre']) ?>" class="main-image">
-                        
-                        <div class="thumbnail-container">
-                            <!-- Miniaturas adicionales podrían ir aquí -->
-                            <div class="thumbnail active"><img src="<?= $imagen_url ?>" alt="Miniatura 1"></div>
-                            <div class="thumbnail"><img src="/api/placeholder/150/150" alt="Miniatura 2"></div>
-                            <div class="thumbnail"><img src="/api/placeholder/150/150" alt="Miniatura 3"></div>
-                        </div>
+                        <img src="../Imagenes_productos/<?= $producto['id'] ?>.jpg" alt="<?= htmlspecialchars($producto['nombre']) ?>" class="main-image">
                     </div>
                     
                     <div class="product-info">
