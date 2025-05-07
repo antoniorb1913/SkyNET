@@ -249,6 +249,7 @@ function removeFilter($tipo, $id) {
     </div>
     <div class="icons">
       <a href="#"><i class="fas fa-user"></i></a>
+      <a href="#"><i class="fas fa-heart"></i></a>
       <a href="#"><i class="fas fa-shopping-cart"></i></a>
     </div>
   </header>
