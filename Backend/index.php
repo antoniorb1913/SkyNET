@@ -74,7 +74,7 @@
     <br>
     <div class="titulo">
     <div class="logo">
-        <img src="imagenes/logo.png" style="heght: 300px; width: 300px;">
+        <img src="logo.png" style="heght: 300px; width: 300px;">
     </div>
     <br>
     <br>
@@ -82,8 +82,9 @@
     <div class="formulario">
         <form id="formularioproductos" method="post">
         <ul class="paginas">
-        <li><a href="formulario_productos.php">Formulario productos</a></li>
-        <li><a href="list_productos.php">Listado productos</a></li>
+        <li><a href="Productos/formulario_productos.php">Formulario productos</a></li>
+        <li><a href="Productos/list_productos.php">Listado productos</a></li>
+        <li><a href="historial/list_historial.php">Historial ventas</a></li>
         </ul>
         </form>
     </div>
