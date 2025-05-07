@@ -30,7 +30,7 @@ $filtros = [
     'categorias' => isset($_GET['categorias']) ? $_GET['categorias'] : [],
     'marcas' => isset($_GET['marcas']) ? $_GET['marcas'] : [],
     'min_precio' => isset($_GET['min_precio']) ? $_GET['min_precio'] : 0,
-    'max_precio' => isset($_GET['max_precio']) ? $_GET['max_precio'] : 2000,
+    'max_precio' => isset($_GET['max_precio']) ? $_GET['max_precio'] : 4000,
     'ordenar' => isset($_GET['ordenar']) ? $_GET['ordenar'] : 'relevancia',
     'mostrar' => isset($_GET['mostrar']) ? $_GET['mostrar'] : 12
 ];
@@ -289,12 +289,12 @@ function removeFilter($tipo, $id) {
             <div class="price-inputs">
               <div class="price-input">
                 <span>€</span>
-                <input type="number" id="minPrice" name="min_precio" value="<?= $filtros['min_precio'] ?>" min="0" max="2000">
+                <input type="number" id="minPrice" name="min_precio" value="<?= $filtros['min_precio'] ?>" min="0" max="4000">
               </div>
               <div class="price-separator">-</div>
               <div class="price-input">
                 <span>€</span>
-                <input type="number" id="maxPrice" name="max_precio" value="<?= $filtros['max_precio'] ?>" min="0" max="2000">
+                <input type="number" id="maxPrice" name="max_precio" value="<?= $filtros['max_precio'] ?>" min="0" max="4000">
               </div>
             </div>
             <button type="submit" class="filter-button">Aplicar precio</button>
@@ -434,7 +434,7 @@ function removeFilter($tipo, $id) {
       const priceRail = document.querySelector('.price-rail');
       
       const minPrice = 0;
-      const maxPrice = 2000;
+      const maxPrice = 4000;
       const range = maxPrice - minPrice;
       
       // Initial position
