@@ -16,12 +16,22 @@
                 '".$respuesta['categoria']."',
                 '".$respuesta['marca']."')";
 
-    $consulta_imagenes = "INSERT INTO  imagenes_productos(nombre)
-                VALUE  ('".$respuesta['id']."')";
-
 
     if(mysqli_query($conexion, $consulta)) {
         header ('Location: list_productos.php');
     } else {
         echo "Mal";
     }
+
+    $target_dir = "../../Frontend/imagenes_productos/";
+    $target_file = $target_dir . basename($_FILES["imagen"]["name"]);
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+      if (move_uploaded_file($_FILES["imagen"]["tmp_name"], $target_file)) {
+        echo "The file ". htmlspecialchars( basename( $_FILES["imagen"]["name"])). " se ha subido.";
+      } else {
+        echo "Lo sentimos, hubo un error al cargar tu archivo.";
+      }
+    
+    ?>
+    ?>

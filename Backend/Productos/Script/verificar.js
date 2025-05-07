@@ -105,15 +105,31 @@ function validarCampo() {
         errorImagen.textContent = "Debe seleccionar una imagen.";
         control = false;
     } else {
+        let archivo = document.getElementById('imagen').files[0]; // Obtener el archivo seleccionado
         let extensionesPermitidas = /(\.jpg|\.jpeg|\.png|\.webp)$/i;
-        if (!extensionesPermitidas.exec(imagen)) {
+        
+        if (!extensionesPermitidas.exec(archivo.name)) {
             errorImagen.textContent = "Formato de imagen no válido. Solo se permiten JPG, JPEG, PNG o WEBP.";
             control = false;
+        } else if (archivo.size > 500000) { // Validar que el tamaño no sea mayor a 500 KB
+            errorImagen.textContent = "El tamaño de la imagen excede los 500 KB.";
+            control = false;
         } else {
-            errorImagen.textContent = "";
+            let reader = new FileReader();
+            reader.readAsDataURL(archivo);
+            reader.onload = function(event) {
+                let img = new Image();
+                img.src = event.target.result;
+                img.onload = function() {
+                    errorImagen.textContent = ""; // Si se carga correctamente, es una imagen válida
+                };
+                img.onerror = function() {
+                    errorImagen.textContent = "El archivo seleccionado no es una imagen válida.";
+                    control = false;
+                };
+            };
         }
     }
-    
     if (control == true){
         formularioproductos.submit(document.getElementById('formularioproductos'));
         

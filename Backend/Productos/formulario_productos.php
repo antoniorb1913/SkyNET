@@ -90,7 +90,7 @@
 </head>
 <body>
     <h2>Formulario de Productos</h2>
-    <form id="formularioproductos" method="post" action="alta_productos.php">
+    <form id="formularioproductos" method="post" action="alta_productos.php" enctype="multipart/form-data">
         <label for="referencia">Referencia:</label>
         <input type="text" name="referencia" id='referencia' required>
         <span class="error" id="errorReferencia"></span>
@@ -132,7 +132,10 @@
             <label for="peso">Peso:</label>
             <input type="number" name="peso" id='peso' style="margin-left: 20px; margin-right: 20px; ">
             <span class="error" id="errorPeso"></span>
-            <label for="imagen">Imagenes:</label>
+        </div>
+        <div class="imagen" style="display: flex;">
+            <label for="imagen">Nombre imagen:</label>
+            <input type="text" name="imagen" id='imagen'>
             <input type="file" name="imagen" id='imagen' style="width: 420px; margin-left: 30px; ">
             <span class="error" id="errorImagen"></span>
         </div>

@@ -18,6 +18,7 @@ create table productos (  /*gestor de stock*/
     created_at datetime,
     deleted_at datetime,
     updated_at datetime
+
 );
 
 create table categorias (
@@ -103,6 +104,10 @@ create table metodo_pago (
     updated_at datetime
 
 );
+<<<<<<< HEAD
+
+=======
+>>>>>>> 5040eca621db6506fe1c23d02ef941e2a59d3412
 
 alter table productos add imagen varchar(255);
 
