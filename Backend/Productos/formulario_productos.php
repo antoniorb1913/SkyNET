@@ -31,7 +31,7 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            max-width: 25%;
+            max-width: 40%;
             margin: auto;
         }
         label {
@@ -110,8 +110,12 @@
             <span class="error" id="errorPrecio"></span>
 
             <label for="stock">Stock:</label>
-            <input type="number" name="stock" id='stock' style="margin-left: 20px; ">
+            <input type="number" name="stock" id='stock' style="margin-left: 20px; margin-right: 20px; ">
             <span class="error" id="errorStock"></span>
+
+            <label for="peso">Peso:</label>
+            <input type="number" name="peso" id='peso' style="margin-left: 20px; margin-right: 20px; ">
+            <span class="error" id="errorPeso"></span>
         </div>
         <br>
         <div class="dimensiones" style="display: flex; gap: 5px;">
@@ -128,15 +132,10 @@
             <span class="error" id="errorLargo"></span>
         </div>
         <br>
-        <div class="peso" style="display: flex;">
-            <label for="peso">Peso:</label>
-            <input type="number" name="peso" id='peso' style="margin-left: 20px; margin-right: 20px; ">
-            <span class="error" id="errorPeso"></span>
-        </div>
-        <div class="imagen" style="display: flex;">
-            <label for="imagen">Nombre imagen:</label>
-            <input type="text" name="imagen" id='imagen'>
-            <input type="file" name="imagen" id='imagen' style="width: 420px; margin-left: 30px; ">
+        <div class="cuimagen" style="display: flex;">
+            <label for="nimagen" style="margin-right: 10px;">Nombre imagen:</label>
+            <input type="text" name="noimagen" id='noimagen' style="width: 200px;" >
+            <input type="file" name="imagen" id='imagen' style="width: 380px; margin-left: 30px; ">
             <span class="error" id="errorImagen"></span>
         </div>
         <br>

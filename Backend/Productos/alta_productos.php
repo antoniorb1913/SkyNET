@@ -17,21 +17,23 @@
                 '".$respuesta['marca']."')";
 
 
+    $target_dir = "../../Frontend/imagenes_productos/";
+
+    // Obtener el nombre personalizado ingresado en el formulario
+    $nombre_imagen_personalizado = $respuesta['imagen']; // El campo donde introduces el nombre de la imagen
+    $imageFileType = strtolower(pathinfo($_FILES["imagen"]["name"], PATHINFO_EXTENSION));
+    
+    // Construir la ruta con el nuevo nombre
+    $target_file = $target_dir . $nombre_imagen_personalizado . "." . $imageFileType;
+    
+    if (move_uploaded_file($_FILES["imagen"]["tmp_name"], $target_file)) {
+        echo "La imagen se ha subido con el nombre: " . htmlspecialchars($nombre_imagen_personalizado . "." . $imageFileType);
+    } else {
+        echo "Lo sentimos, hubo un error al cargar tu archivo.";
+    }
     if(mysqli_query($conexion, $consulta)) {
         header ('Location: list_productos.php');
     } else {
         echo "Mal";
     }
-
-    $target_dir = "../../Frontend/imagenes_productos/";
-    $target_file = $target_dir . basename($_FILES["imagen"]["name"]);
-    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-
-      if (move_uploaded_file($_FILES["imagen"]["tmp_name"], $target_file)) {
-        echo "The file ". htmlspecialchars( basename( $_FILES["imagen"]["name"])). " se ha subido.";
-      } else {
-        echo "Lo sentimos, hubo un error al cargar tu archivo.";
-      }
-    
-    ?>
     ?>

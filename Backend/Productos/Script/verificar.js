@@ -29,7 +29,8 @@ function validarCampo() {
     let peso = document.getElementById('peso').value;
     let errorPeso = document.getElementById('errorPeso');
 
-    let imagen = document.getElementById('imagen').value;
+    let imagenInput = document.getElementById('imagen'); 
+    let archivo = imagenInput.files[0]; // Obtener el archivo correctamente
     let errorImagen = document.getElementById('errorImagen');
 
     
@@ -100,34 +101,20 @@ function validarCampo() {
     } else {
         document.getElementById('errorPeso').textContent = "";
     }
-    
-    if (imagen === "") {
+    if (!archivo) {
         errorImagen.textContent = "Debe seleccionar una imagen.";
         control = false;
     } else {
-        let archivo = document.getElementById('imagen').files[0]; // Obtener el archivo seleccionado
-        let extensionesPermitidas = /(\.jpg|\.jpeg|\.png|\.webp)$/i;
-        
-        if (!extensionesPermitidas.exec(archivo.name)) {
-            errorImagen.textContent = "Formato de imagen no válido. Solo se permiten JPG, JPEG, PNG o WEBP.";
+        let extensionesPermitidas = /\.(jpg|jpeg|png|webp|gif)$/i;
+
+        if (!extensionesPermitidas.test(archivo.name)) {
+            errorImagen.textContent = "Formato de imagen no válido. Solo se permiten JPG, JPEG, PNG, WEBP o GIF.";
             control = false;
-        } else if (archivo.size > 500000) { // Validar que el tamaño no sea mayor a 500 KB
-            errorImagen.textContent = "El tamaño de la imagen excede los 500 KB.";
+        } else if (archivo.size > 1000000) { // 1 MB máximo
+            errorImagen.textContent = "El tamaño de la imagen excede los 1 MB.";
             control = false;
         } else {
-            let reader = new FileReader();
-            reader.readAsDataURL(archivo);
-            reader.onload = function(event) {
-                let img = new Image();
-                img.src = event.target.result;
-                img.onload = function() {
-                    errorImagen.textContent = ""; // Si se carga correctamente, es una imagen válida
-                };
-                img.onerror = function() {
-                    errorImagen.textContent = "El archivo seleccionado no es una imagen válida.";
-                    control = false;
-                };
-            };
+            errorImagen.textContent = "";
         }
     }
     if (control == true){
