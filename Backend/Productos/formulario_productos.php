@@ -132,9 +132,9 @@
             <label for="peso">Peso:</label>
             <input type="number" name="peso" id='peso' style="margin-left: 20px; margin-right: 20px; ">
             <span class="error" id="errorPeso"></span>
-            <label for="foto">Imagenes:</label>
-            <input type="file" name="foto" id='foto' style="width: 420px; margin-left: 30px; ">
-            <span class="error" id="errorFoto"></span>
+            <label for="imagen">Imagenes:</label>
+            <input type="file" name="imagen" id='imagen' style="width: 420px; margin-left: 30px; ">
+            <span class="error" id="errorImagen"></span>
         </div>
         <br>
         <div class="lista" style="display: flex; gap: 5px;">
