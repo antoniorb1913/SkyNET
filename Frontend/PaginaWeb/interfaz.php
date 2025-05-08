@@ -526,5 +526,6 @@ function removeFilter($tipo, $id) {
       }
     });
   </script>
+  <script src="../Scripts/carrito.js"></script>
 </body>
 </html>

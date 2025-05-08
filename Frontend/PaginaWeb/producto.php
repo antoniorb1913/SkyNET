@@ -280,6 +280,7 @@ return '?' . http_build_query($params);
         }
     });
 </script>
+<script src="../Scripts/carrito.js"></script>
 
 </body>
 </html>
