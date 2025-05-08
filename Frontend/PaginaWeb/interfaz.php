@@ -242,7 +242,7 @@ function removeFilter($tipo, $id) {
       <a href="#">Productos</a>
       <a href="#">Ofertas</a>
       <a href="../PaginaWeb/soporte.php">Soporte</a>
-      <a href="#">Contacto</a>
+      <a href="../PaginaWeb/contacto.php">Contacto</a>
     </nav>
     <div class="search-container">
       <input type="text" placeholder="Buscar productos...">
