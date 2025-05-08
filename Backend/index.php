@@ -74,7 +74,7 @@
     <br>
     <div class="titulo">
     <div class="logo">
-        <img src="logo.png" style="heght: 300px; width: 300px;">
+        <img src="logo.png" style="height: 300px; width: 300px;">
     </div>
     <br>
     <br>
