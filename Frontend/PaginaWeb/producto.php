@@ -70,8 +70,8 @@ return '?' . http_build_query($params);
 </head>
 <body>
     <header>
-        <div style="width: 150px; height: auto; padding: 5px; box-sizing: border-box;">
-        <img src="../LOGO/Logo.png" alt="Logo" style="width: 100%; height: auto; display: block; max-width: 100%; border: 0;">
+        <div style="width: 90px; height: auto; padding: 5px; box-sizing: border-box;">
+        <img src="../LOGO/Logo sin fondo.png" alt="Logo" style="width: 100%; height: auto; display: block; max-width: 100%; border: 0;">
         </div>
         <nav>
             <a href="index.php">Inicio</a>
