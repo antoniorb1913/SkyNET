@@ -233,7 +233,10 @@ function removeFilter($tipo, $id) {
 </head>
 <body>
   <header>
-    <div class="logo">SkyNet</div>
+  <div style="width: 150px; height: auto; padding: 5px; box-sizing: border-box;">
+  <img src="../LOGO/Logo.png" alt="Logo" style="width: 100%; height: auto; display: block; max-width: 100%; border: 0;">
+</div>
+
     <nav>
       <a href="#">Inicio</a>
       <a href="#">Productos</a>
