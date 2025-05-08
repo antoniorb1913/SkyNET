@@ -822,3 +822,29 @@ footer p {
     font-size: 13px;
   }
 }
+.filter-button {
+  background-color: #3b81ff;
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  transition: background-color 0.2s;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.filter-button:hover {
+  background-color: #2a6dd6;
+}
+
+.filter-button:active {
+  background-color: #1e5bb8;
+}
+
+.filter-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(59, 129, 255, 0.4);
+}
