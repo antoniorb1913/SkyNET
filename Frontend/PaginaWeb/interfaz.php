@@ -238,11 +238,11 @@ function removeFilter($tipo, $id) {
 </div>
 
     <nav>
-      <a href="#">Inicio</a>
+      <a href="index.php">Inicio</a>
       <a href="#">Productos</a>
       <a href="#">Ofertas</a>
-      <a href="#">Soporte</a>
-      <a href="#">Contacto</a>
+      <a href="../PaginaWeb/soporte.php">Soporte</a>
+      <a href="../PaginaWeb/contacto.php">Contacto</a>
     </nav>
     <div class="search-container">
       <input type="text" placeholder="Buscar productos...">
@@ -299,8 +299,7 @@ function removeFilter($tipo, $id) {
                 <input type="number" id="maxPrice" name="max_precio" value="<?= $filtros['max_precio'] ?>" min="0" max="4000">
               </div>
             </div>
-            <button type="submit" class="filter-button">Aplicar precio</button>
-          </div>
+<button type="submit" class="filter-button" style="background-color: #3b81ff; color: #fff; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; font-weight: 500; font-size: 14px; transition: background-color 0.2s; width: 100%; margin-top: 10px;">Aplicar precio</button>          </div>
         </div>
 
         <div class="filter-section">

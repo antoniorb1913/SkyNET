@@ -77,8 +77,8 @@ return '?' . http_build_query($params);
             <a href="index.php">Inicio</a>
             <a href="interfaz.php">Productos</a>
             <a href="#">Ofertas</a>
-            <a href="#">Soporte</a>
-            <a href="#">Contacto</a>
+            <a href="../PaginaWeb/soporte.php">Soporte</a>
+            <a href="../PaginaWeb/contacto.php">Contacto</a>
         </nav>
         <div class="search-container">
             <input type="text" placeholder="Buscar productos...">
