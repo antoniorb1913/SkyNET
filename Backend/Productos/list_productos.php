@@ -182,7 +182,7 @@ $marcas = mysqli_query( $conexion, $consulta_marca);
     ?>
     
     <div class="logo">
-        <img src="../logo.png" style="heght: 150px; width: 150px;">
+        <img src="../logo.png" style="height: 150px; width: 150px;">
     </div>
     </div>
     <br>
