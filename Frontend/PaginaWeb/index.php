@@ -5,6 +5,9 @@
     <title>SkyNet | Donde el cielo toca el infinito</title>
     <link rel="stylesheet" href="skynet.css">
     <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
         .hero {
             background: linear-gradient(to right, #3b81ff, #1e88e5);
             color: white;

@@ -25,6 +25,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <title>Contacto</title>
     <link rel="stylesheet" href="skynet.css">
     <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
         .form-container {
             max-width: 600px;
             margin: 40px auto;
