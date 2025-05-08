@@ -133,8 +133,8 @@ $marcas = mysqli_query( $conexion, $consulta_marca);
 
     .boton {
         display: inline-block;
-        padding: 10px 20px;
-        font-size: 18px;
+        padding: 10px 10px;
+        font-size: 15px;
         color: white;
         background-color: #007bff;
         text-decoration: none;
@@ -142,8 +142,7 @@ $marcas = mysqli_query( $conexion, $consulta_marca);
         border: none;
         cursor: pointer;
         text-align: center;
-        line-height: 20px;
-        margin-left: 20px;
+        margin-left: 10px;
     }
 
     .boton:hover {
@@ -161,16 +160,16 @@ $marcas = mysqli_query( $conexion, $consulta_marca);
     <form id="formularioproductos" method="post" action="list_productos.php">
     <div class="filtros" style="display: flex; gap: 5px;">
     <label for="nombre">Nombre:</label>
-    <input type="text" name="nombre" id='nombre' style="width: 500px; height: 15px; margin-right: 30px; margin-left: 10px;">
+    <input type="text" name="nombre" id='nombre' style="width: 250px; height: 15px; margin-right: 30px; margin-left: 10px;">
     <label for="categoria">Filtro categoria:</label>
-    <select name="categoria" style="width: 200px; height: 40px; margin-right: 30px; margin-left: 10px;">
+    <select name="categoria" style="width: 150px; height: 40px; margin-right: 30px; margin-left: 10px;">
         <option value="0"></option>
         <?php while ($categoria = mysqli_fetch_array( $categorias )) { ?>
         <option style="width: 200px;" value="<?php echo $categoria['id'] ?> "> <?php echo $categoria['nombre']?></option>';
         <?php } ?>
         </select>
     <label for="marca">Filtro marca:</label>
-    <select name="marca" style="width: 200px; height: 40px; margin-left: 10px; margin-right: 30px;">
+    <select name="marca" style="width: 150px; height: 40px; margin-left: 10px; margin-right: 30px;">
         <option value="0"></option>
         <?php while ($marca = mysqli_fetch_array( $marcas )) { ?>
         <option style="width: 200px;" value="<?php echo $marca['id'] ?> "> <?php echo $marca['nombre']?></option>';
@@ -178,8 +177,10 @@ $marcas = mysqli_query( $conexion, $consulta_marca);
         </select>
     <input type="submit" style="width: 100px; font-size: 18px; background-color: #007bff; color: rgb(255, 255, 255)"></input>
     <?php
-        echo "<a href='xml.php?nombre=".$filtro_nombre."&categoria=".$filtro_categoria."&marca=".$filtro_marca."' class='boton'>Exportar XML</a>&nbsp;&nbsp;";
+        echo "<a href='xml.php?nombre=".$filtro_nombre."&categoria=".$filtro_categoria."&marca=".$filtro_marca."' class='boton'>Exportar XML</a>";
+        echo "<a href='buscar_xpath.php?nombre=" . urlencode($filtro_nombre) . "&categoria=" . urlencode($filtro_categoria) . "&marca=" . urlencode($filtro_marca) . "' class='boton'>Buscar con XPath</a>";
     ?>
+    
     <div class="logo">
         <img src="../logo.png" style="heght: 150px; width: 150px;">
     </div>
