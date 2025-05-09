@@ -1,6 +1,6 @@
 <?php
-require_once "config.php";
 session_start();
+require_once "config.php";
 
 // Definir variables e inicializar con valores vacíos
 $nombre = $apellidos = $email = $contrasena = $confirmar_contrasena = $nick = "";
@@ -83,7 +83,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         // Preparar una consulta
         $sql = "SELECT id FROM clientes WHERE nick = ?";
         
-        if($stmt = mysqli_prepare($conexion, $sql)){
+        if($stmt = mysqli_prepare($conn, $sql)){
             // Vincular variables a la consulta preparada como parámetros
             mysqli_stmt_bind_param($stmt, "s", $param_nick);
             
@@ -115,7 +115,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         // Preparar una consulta de inserción
         $sql = "INSERT INTO clientes (nombre, apellidos, email, contrasena, nick, created_at, updated_at) VALUES (?, ?, ?, ?, ?, NOW(), NOW())";
          
-        if($stmt = mysqli_prepare($conexion, $sql)){
+        if($stmt = mysqli_prepare($conn, $sql)){
             // Vincular variables a la consulta preparada como parámetros
             mysqli_stmt_bind_param($stmt, "sssss", $param_nombre, $param_apellidos, $param_email, $param_contrasena, $param_nick);
             
