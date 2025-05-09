@@ -35,194 +35,6 @@ document.addEventListener('DOMContentLoaded', function() {
     overlay.className = 'overlay';
     document.body.appendChild(overlay);
 
-    // Añadir estilos CSS
-    const styleEl = document.createElement('style');
-    styleEl.textContent = `
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 998;
-            display: none;
-        }
-        
-        .cart-popup {
-            position: fixed;
-            top: 0;
-            right: -400px;
-            width: 380px;
-            height: 100%;
-            background-color: white;
-            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
-            z-index: 999;
-            transition: right 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .cart-popup.active {
-            right: 0;
-        }
-        
-        .cart-popup-header {
-            padding: 15px;
-            border-bottom: 1px solid #e0e0e0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .cart-popup-header h3 {
-            margin: 0;
-            font-size: 1.2em;
-        }
-        
-        .close-cart {
-            background: none;
-            border: none;
-            font-size: 1.2em;
-            cursor: pointer;
-            color: #333;
-        }
-        
-        .cart-popup-body {
-            flex: 1;
-            overflow-y: auto;
-            padding: 15px;
-        }
-        
-        .cart-items {
-            margin-bottom: 15px;
-        }
-        
-        .cart-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #f0f0f0;
-        }
-        
-        .cart-item-image {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            margin-right: 15px;
-        }
-        
-        .cart-item-details {
-            flex: 1;
-        }
-        
-        .cart-item-title {
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        
-        .cart-item-price {
-            color: #333;
-        }
-        
-        .cart-item-quantity {
-            display: flex;
-            align-items: center;
-            margin-top: 10px;
-        }
-        
-        .quantity-btn {
-            width: 25px;
-            height: 25px;
-            background: #f0f0f0;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        
-        .quantity-input {
-            width: 40px;
-            height: 25px;
-            text-align: center;
-            margin: 0 5px;
-            border: 1px solid #e0e0e0;
-            border-radius: 3px;
-        }
-        
-        .cart-item-remove {
-            background: none;
-            border: none;
-            color: #999;
-            cursor: pointer;
-            margin-left: 10px;
-        }
-        
-        .cart-empty {
-            text-align: center;
-            padding: 30px 0;
-        }
-        
-        .continue-shopping {
-            background-color: #f0f0f0;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 3px;
-            cursor: pointer;
-            margin-top: 15px;
-            font-weight: bold;
-        }
-        
-        .cart-popup-footer {
-            padding: 15px;
-            border-top: 1px solid #e0e0e0;
-        }
-        
-        .cart-subtotal {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            font-weight: bold;
-        }
-        
-        .cart-buttons {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .view-cart, .checkout {
-            padding: 10px;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-            font-weight: bold;
-            flex: 1;
-        }
-        
-        .view-cart {
-            background-color: #f0f0f0;
-            color: #333;
-        }
-        
-        .checkout {
-            background-color: #4CAF50;
-            color: white;
-        }
-        
-        /* Animación de notificación del carrito */
-        @keyframes cartBounce {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-        
-        .cart-notification {
-            animation: cartBounce 0.3s ease;
-        }
-    `;
-    document.head.appendChild(styleEl);
-
     // Estado del carrito
     let cartItems = [];
     
@@ -440,52 +252,27 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Función para actualizar el contador del carrito
-    // Función para actualizar el contador del carrito
-function updateCartCount() {
-    const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
-    
-    // Crear o actualizar el badge del carrito
-    if (cartButton) {
-        let cartBadge = document.querySelector('.cart-badge');
+    function updateCartCount() {
+        const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
         
-        if (!cartBadge) {
-            cartBadge = document.createElement('span');
-            cartBadge.className = 'cart-badge';
-            cartButton.appendChild(cartBadge);
+        // Crear o actualizar el badge del carrito
+        if (cartButton) {
+            let cartBadge = document.querySelector('.cart-badge');
             
-            // Añadir estilo para el badge
-            const badgeStyle = document.createElement('style');
-            badgeStyle.textContent = `
-                .icons a:nth-child(3) {
-                    position: relative;
-                }
-                .cart-badge {
-                    position: absolute;
-                    top: -8px;
-                    right: -8px;
-                    background-color: #ff4444;
-                    color: white;
-                    border-radius: 50%;
-                    width: 18px;
-                    height: 18px;
-                    font-size: 11px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    font-weight: bold;
-                }
-            `;
-            document.head.appendChild(badgeStyle);
-        }
-        
-        if (totalItems > 0) {
-            cartBadge.textContent = totalItems;
-            cartBadge.style.display = 'flex';
-        } else {
-            cartBadge.style.display = 'none';
+            if (!cartBadge) {
+                cartBadge = document.createElement('span');
+                cartBadge.className = 'cart-badge';
+                cartButton.appendChild(cartBadge);
+            }
+            
+            if (totalItems > 0) {
+                cartBadge.textContent = totalItems;
+                cartBadge.style.display = 'flex';
+            } else {
+                cartBadge.style.display = 'none';
+            }
         }
     }
-}
 
     // Funciones para guardar y cargar el carrito en localStorage
     function saveCart() {
@@ -533,51 +320,8 @@ function updateCartCount() {
                 `;
                 document.body.appendChild(notification);
                 
-                // Estilos para la notificación
-                notification.style.position = 'fixed';
-                notification.style.top = '20px';
-                notification.style.right = '20px';
-                notification.style.backgroundColor = '#4CAF50';
-                notification.style.color = 'white';
-                notification.style.padding = '15px 20px';
-                notification.style.borderRadius = '5px';
-                notification.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
-                notification.style.zIndex = '1000';
-                notification.style.display = 'flex';
-                notification.style.alignItems = 'center';
-                notification.style.animation = 'fadeIn 0.3s ease';
-                
-                // Estilos para el contenido
-                const notificationContent = notification.querySelector('.notification-content');
-                notificationContent.style.display = 'flex';
-                notificationContent.style.alignItems = 'center';
-                
-                // Estilos para el icono
-                const icon = notification.querySelector('i');
-                icon.style.marginRight = '10px';
-                icon.style.fontSize = '20px';
-                
-                // Añadir animación
-                const style = document.createElement('style');
-                style.textContent = `
-                    @keyframes fadeIn {
-                        from { opacity: 0; transform: translateY(-10px); }
-                        to { opacity: 1; transform: translateY(0); }
-                    }
-                `;
-                document.head.appendChild(style);
-                
                 setTimeout(() => {
                     notification.style.animation = 'fadeOut 0.3s ease forwards';
-                    const fadeOut = document.createElement('style');
-                    fadeOut.textContent = `
-                        @keyframes fadeOut {
-                            from { opacity: 1; transform: translateY(0); }
-                            to { opacity: 0; transform: translateY(-10px); }
-                        }
-                    `;
-                    document.head.appendChild(fadeOut);
-                    
                     setTimeout(() => {
                         document.body.removeChild(notification);
                     }, 300);
@@ -626,51 +370,8 @@ function updateCartCount() {
                 `;
                 document.body.appendChild(notification);
                 
-                // Estilos para la notificación
-                notification.style.position = 'fixed';
-                notification.style.top = '20px';
-                notification.style.right = '20px';
-                notification.style.backgroundColor = '#4CAF50';
-                notification.style.color = 'white';
-                notification.style.padding = '15px 20px';
-                notification.style.borderRadius = '5px';
-                notification.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
-                notification.style.zIndex = '1000';
-                notification.style.display = 'flex';
-                notification.style.alignItems = 'center';
-                notification.style.animation = 'fadeIn 0.3s ease';
-                
-                // Estilos para el contenido
-                const notificationContent = notification.querySelector('.notification-content');
-                notificationContent.style.display = 'flex';
-                notificationContent.style.alignItems = 'center';
-                
-                // Estilos para el icono
-                const icon = notification.querySelector('i');
-                icon.style.marginRight = '10px';
-                icon.style.fontSize = '20px';
-                
-                // Añadir animación
-                const style = document.createElement('style');
-                style.textContent = `
-                    @keyframes fadeIn {
-                        from { opacity: 0; transform: translateY(-10px); }
-                        to { opacity: 1; transform: translateY(0); }
-                    }
-                `;
-                document.head.appendChild(style);
-                
                 setTimeout(() => {
                     notification.style.animation = 'fadeOut 0.3s ease forwards';
-                    const fadeOut = document.createElement('style');
-                    fadeOut.textContent = `
-                        @keyframes fadeOut {
-                            from { opacity: 1; transform: translateY(0); }
-                            to { opacity: 0; transform: translateY(-10px); }
-                        }
-                    `;
-                    document.head.appendChild(fadeOut);
-                    
                     setTimeout(() => {
                         document.body.removeChild(notification);
                     }, 300);
@@ -678,10 +379,6 @@ function updateCartCount() {
             }
         });
     }
-
-    // Hacer que el carrito sea estilísticamente coherente con la página
-    document.querySelector('.cart-popup-header').style.backgroundColor = '#f8f8f8';
-    document.querySelector('.checkout').style.backgroundColor = '#007bff';
 
     // Manejadores de eventos para los botones de navegación del carrito
     document.querySelector('.view-cart').addEventListener('click', function() {
