@@ -1,4 +1,5 @@
 <?php
+include("../auth.php");
     require_once(__DIR__ . '/../../conectordb/conectordb.php');
 
 $consulta_productos = "SELECT pr.id as id, pr.referencia as referencia, pr.nombre as nombre, pr.descripcion as descripcion, pr.precio as precio, 

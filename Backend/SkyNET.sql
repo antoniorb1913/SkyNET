@@ -104,6 +104,14 @@ create table metodo_pago (
     updated_at datetime
 
 );
+CREATE TABLE admin (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(100) NOT NULL,
+    email VARCHAR(50) UNIQUE NOT NULL,
+    contrasena VARCHAR(255) NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
 <<<<<<< HEAD
 
 =======

@@ -1,4 +1,6 @@
 <?php
+include("../auth.php"); // Verifica si el usuario ha iniciado sesión
+
     $respuesta = $_REQUEST;
     require_once(__DIR__ . '/../../conectordb/conectordb.php');
 
