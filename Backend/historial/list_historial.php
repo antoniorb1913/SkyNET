@@ -162,8 +162,10 @@ $listado_historial = mysqli_query($conexion, $consulta_historial);
         <input type="text" name="nombre" id='nombre' style="width: 500px; height: 15px; margin-right: 30px; margin-left: 10px;">
         <input type="submit" style="width: 100px; font-size: 18px; background-color: #007bff; color: rgb(255, 255, 255)"></input>
         <div class="logo">
-            <img src="../logo.png" style="heght: 150px; width: 150px;">
-        </div>
+        <a href="/Backend">
+        <img src="../logo.png" style="height: 150px; width: 150px;">
+        </a>
+    </div>
         </div>
         <br>
         <br>

@@ -86,9 +86,25 @@
         h2 {
             font-size: 300%;
         }
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            height: 150px;
+            width: 150px;
+        }   
     </style>
 </head>
 <body>
+    <div class="logo">
+        <a href="/Backend">
+        <img src="../logo.png" style="height: 150px; width: 150px;">
+        </a>
+    </div>
     <h2>Formulario de Productos</h2>
     <form id="formularioproductos" method="post" action="alta_productos.php" enctype="multipart/form-data">
         <label for="referencia">Referencia:</label>
