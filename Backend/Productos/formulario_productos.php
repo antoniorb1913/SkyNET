@@ -16,7 +16,7 @@ include("../auth.php"); // Verifica si el usuario ha iniciado sesión
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario de Productos</title>
-    <script src="Script/verificar.js"></script>
+    <script src="Scripts/validar_formulario.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;

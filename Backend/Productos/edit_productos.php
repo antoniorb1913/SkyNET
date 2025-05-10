@@ -23,7 +23,7 @@ if (isset($_REQUEST['id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CLIENTES</title>
-    <script src="/verificar.js"></script>
+    <script src="/Scripts/validar_formulario.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
