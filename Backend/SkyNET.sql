@@ -111,6 +111,19 @@ CREATE TABLE admin (
     contrasena VARCHAR(255) NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
+CREATE TABLE soporte (
+    id INT PRIMARY KEY AUTO_INCREMENT, 
+    nombre VARCHAR(50) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    asunto VARCHAR(100) NOT NULL,
+    mensaje TEXT NOT NULL,
+    fecha_entrada DATETIME DEFAULT CURRENT_TIMESTAMP,
+    estado ENUM('pendiente', 'en proceso', 'resuelto') DEFAULT 'pendiente',
+    cliente_id INT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (cliente_id) REFERENCES clientes(id)
+);
+
 
 <<<<<<< HEAD
 

@@ -4,12 +4,21 @@ require_once "config.php";
 
 $mensaje_enviado = false;
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // Verificar si el usuario está logueado y obtener su ID
+    if (!isset($_SESSION["id"])) {
+        die("Error: Debes iniciar sesión para enviar una consulta.");
+    }
+
+    $cliente_id = $_SESSION["id"]; // ID del cliente desde la sesión
     $nombre = $_POST['nombre'] ?? '';
     $email = $_POST['email'] ?? '';
+    $asunto = $_POST['asunto'] ?? '';
     $mensaje = $_POST['mensaje'] ?? '';
 
-    $stmt = $conn->prepare("INSERT INTO soporte (nombre, email, mensaje) VALUES (?, ?, ?)");
-    $stmt->bind_param("sss", $nombre, $email, $mensaje);
+    // Preparar la consulta con el cliente_id
+    $stmt = $conn->prepare("INSERT INTO soporte (nombre, email, asunto, mensaje, cliente_id, fecha_entrada) VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP)");
+    $stmt->bind_param("ssssi", $nombre, $email, $asunto, $mensaje, $cliente_id);
+
     if ($stmt->execute()) {
         $mensaje_enviado = true;
     }
@@ -21,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Centro de Soporte</title>
+    <title>Contacto</title>
     <link rel="stylesheet" href="skynet.css">
     <style>
         body {
@@ -74,10 +83,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </head>
 <body>
     <main class="form-container">
-        <h2>Centro de Soporte</h2>
+        <h2>Formulario de Soporte</h2>
 
         <?php if ($mensaje_enviado): ?>
-            <p class="success-msg">Tu mensaje ha sido enviado con éxito. Gracias por contactarnos.</p>
+            <p class="success-msg">Tu mensaje ha sido enviado. Nos pondremos en contacto contigo pronto.</p>
         <?php endif; ?>
 
         <form method="POST" action="agradecimiento.php">
@@ -89,6 +98,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <div class="form-group">
                 <label for="email">Correo electrónico:</label>
                 <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="asunto">Asunto:</label>
+                <input type="text" id="asunto" name="asunto" required>
             </div>
 
             <div class="form-group">

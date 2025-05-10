@@ -27,6 +27,7 @@ if ($resultado_marcas->num_rows > 0) {
 
 // Inicializar variables de filtro
 $filtros = [
+    'buscar' => isset($_GET['buscar']) ? trim($_GET['buscar']) : '',
     'categorias' => isset($_GET['categorias']) ? $_GET['categorias'] : [],
     'marcas' => isset($_GET['marcas']) ? $_GET['marcas'] : [],
     'min_precio' => isset($_GET['min_precio']) ? $_GET['min_precio'] : 0,
@@ -44,6 +45,15 @@ $sql = "SELECT p.*, c.nombre as categoria, m.nombre as marca
 // Aplicar filtros
 $params = [];
 $tipos = "";
+
+// Filtro de búsqueda
+if (!empty($filtros['buscar'])) {
+    $sql .= " AND (p.nombre LIKE ? OR p.descripcion LIKE ?)";
+    $searchTerm = '%' . $filtros['buscar'] . '%';
+    $params[] = $searchTerm;
+    $params[] = $searchTerm;
+    $tipos .= "ss";
+}
 
 // Filtro de categorías
 if (!empty($filtros['categorias'])) {
@@ -114,6 +124,14 @@ $count_params = [];
 $count_tipos = "";
 
 // Aplicar los mismos filtros a la consulta de conteo
+if (!empty($filtros['buscar'])) {
+    $sql_count .= " AND (p.nombre LIKE ? OR p.descripcion LIKE ?)";
+    $searchTerm = '%' . $filtros['buscar'] . '%';
+    $count_params[] = $searchTerm;
+    $count_params[] = $searchTerm;
+    $count_tipos .= "ss";
+}
+
 if (!empty($filtros['categorias'])) {
     $placeholders = str_repeat("?,", count($filtros['categorias']) - 1) . "?";
     $sql_count .= " AND p.categoria_id IN ($placeholders)";
@@ -148,6 +166,14 @@ $total_paginas = ceil($total_productos / $filtros['mostrar']);
 
 // Obtener etiquetas de filtro activas
 $filtros_activos = [];
+if (!empty($filtros['buscar'])) {
+    $filtros_activos[] = [
+        'tipo' => 'buscar',
+        'id' => 'buscar',
+        'nombre' => 'Búsqueda: ' . $filtros['buscar']
+    ];
+}
+
 if (!empty($filtros['categorias'])) {
     foreach ($categorias as $categoria) {
         if (in_array($categoria['id'], $filtros['categorias'])) {
@@ -182,6 +208,10 @@ function buildFilterUrl($nuevos_params = []) {
             $params[$key] = $value;
         }
     }
+    // Mantener el término de búsqueda si existe
+    if (isset($_GET['buscar'])) {
+        $params['buscar'] = $_GET['buscar'];
+    }
     return '?' . http_build_query($params);
 }
 
@@ -198,7 +228,9 @@ function isMarcaSelected($marca_id) {
 // Función para eliminar un filtro
 function removeFilter($tipo, $id) {
     $params = $_GET;
-    if ($tipo === 'categoria' && isset($params['categorias'])) {
+    if ($tipo === 'buscar') {
+        unset($params['buscar']);
+    } elseif ($tipo === 'categoria' && isset($params['categorias'])) {
         $key = array_search($id, $params['categorias']);
         if ($key !== false) {
             unset($params['categorias'][$key]);
@@ -231,6 +263,26 @@ function removeFilter($tipo, $id) {
   <link rel="stylesheet" href="../Estilos/skynet.css" />
   <link rel="stylesheet" href="../Estilos/carrito.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    .search-results-info {
+        margin-bottom: 20px;
+        padding: 10px;
+        background-color: #f8f9fa;
+        border-radius: 4px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .clear-search {
+        color: #3b81ff;
+        text-decoration: none;
+    }
+
+    .clear-search:hover {
+        text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -242,12 +294,15 @@ function removeFilter($tipo, $id) {
       <a href="index.php">Inicio</a>
       <a href="#">Productos</a>
       <a href="../PaginaWeb/soporte.php">Soporte</a>
-      <a href="../PaginaWeb/contacto.php">Contacto</a>
     </nav>
-    <div class="search-container">
-      <input type="text" placeholder="Buscar productos...">
-      <button><i class="fas fa-search"></i></button>
-    </div>
+    <form method="GET" action="">
+        <div class="search-container">
+            <input type="text" name="buscar" placeholder="Buscar productos..." 
+                   value="<?= isset($_GET['buscar']) ? htmlspecialchars($_GET['buscar']) : '' ?>" required>
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </div>
+    </form>
+
     <div class="icons">
       <a href="login.php"><i class="fas fa-user"></i></a>
       <a href="#"><i class="fas fa-heart"></i></a>
@@ -317,6 +372,7 @@ function removeFilter($tipo, $id) {
         </div>
         
         <!-- Campos ocultos para mantener otros parámetros -->
+        <input type="hidden" name="buscar" value="<?= htmlspecialchars($filtros['buscar']) ?>">
         <input type="hidden" name="ordenar" value="<?= $filtros['ordenar'] ?>">
         <input type="hidden" name="mostrar" value="<?= $filtros['mostrar'] ?>">
         <input type="hidden" name="page" value="1">
@@ -351,6 +407,13 @@ function removeFilter($tipo, $id) {
         </div>
       </div>
 
+      <?php if (!empty($filtros['buscar'])): ?>
+      <div class="search-results-info">
+          <p>Resultados de búsqueda para: <strong>"<?= htmlspecialchars($filtros['buscar']) ?>"</strong></p>
+          <a href="?" class="clear-search">Limpiar búsqueda</a>
+      </div>
+      <?php endif; ?>
+
       <?php if (!empty($filtros_activos)): ?>
       <div class="filter-tags">
         <span>Filtros activos:</span>
@@ -367,6 +430,9 @@ function removeFilter($tipo, $id) {
         <?php if (empty($productos)): ?>
           <div class="no-products">
             <p>No se encontraron productos que coincidan con los filtros seleccionados.</p>
+            <?php if (!empty($filtros['buscar'])): ?>
+              <p>Intenta con otros términos de búsqueda.</p>
+            <?php endif; ?>
           </div>
         <?php else: ?>
           <?php foreach ($productos as $producto): ?>
@@ -377,6 +443,7 @@ function removeFilter($tipo, $id) {
               
               <?php 
               // Verificar si el producto es nuevo (menos de 30 días)
+              
               $fecha_creacion = new DateTime($producto['created_at']);
               $ahora = new DateTime();
               $diferencia = $ahora->diff($fecha_creacion);
