@@ -38,7 +38,11 @@ function validarCampo() {
     if (referencia.length < 2 || referencia.length > 50) {
         errorReferencia.textContent = "Número de caracteres inválido.";
         control = false;
+    } else if (!/^[a-zA-Z0-9]+$/.test(referencia)) {
+        errorReferencia.textContent = "La referencia solo debe contener letras y números (sin espacios ni símbolos).";
+        control = false;
     }
+    
 
     // Valida que el nombre tenga entre 2 y 100 caracteres
     if (nombre.length < 2 || nombre.length > 100) {
