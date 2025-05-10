@@ -1,8 +1,8 @@
-function validarCampo() {
-
+function validarCampo() { // Detenemos el envío del formulario
     let control = true;
 
-    let referencia = document.getElementById('referencia').value;
+    // Obtención de elementos (igual que tu versión original)
+    let referencia = document.getElementById('referencia').value.trim();
     let errorReferencia = document.getElementById('errorReferencia');
 
     let nombre = document.getElementById('nombre').value;
@@ -33,78 +33,98 @@ function validarCampo() {
     let archivo = imagenInput.files[0]; // Obtener el archivo correctamente
     let errorImagen = document.getElementById('errorImagen');
 
-    
-    // Valida que la referencia tenga entre 2 y 50 caracteres
+    // 🟢 **Validación de caracteres entre 2 y 50**
     if (referencia.length < 2 || referencia.length > 50) {
-        errorReferencia.textContent = "Número de caracteres inválido.";
-        control = false;
-    } else if (!/^[a-zA-Z0-9]+$/.test(referencia)) {
-        errorReferencia.textContent = "La referencia solo debe contener letras y números (sin espacios ni símbolos).";
+        console.log("Error: La referencia tiene menos de 2 o más de 50 caracteres.");
+        errorReferencia.textContent = "Debe tener entre 2 y 50 caracteres.";
         control = false;
     }
-    
+
+    // 🔴 **Nueva validación para garantizar al menos una letra y un número**
+    if (!/[a-zA-Z]/.test(referencia)) {
+        console.log("Error: La referencia NO tiene letras.");
+        errorReferencia.textContent = "Debe contener al menos una letra.";
+        control = false;
+    } 
+
+    if (!/[0-9]/.test(referencia)) {
+        console.log("Error: La referencia NO tiene números.");
+        errorReferencia.textContent = "Debe contener al menos un número.";
+        control = false;
+    }
+
+    // ✅ **Si la referencia es válida, limpia el mensaje de error**
+    if (control) {
+        console.log("Referencia válida.");
+        errorReferencia.textContent = ""; // Limpia mensaje si está correcto
+    }
+
 
     // Valida que el nombre tenga entre 2 y 100 caracteres
     if (nombre.length < 2 || nombre.length > 100) {
         errorNombre.textContent = "Número de caracteres inválido.";
         control = false;
+    } else {
+        errorNombre.textContent = ""; // Limpia el mensaje de error
     }
 
     // Valida que la descripción no exceda los 500 caracteres
     if (descripcion.length > 500) {
-        document.getElementById('errorDescripcion').textContent = "La descripción es muy larga (máximo 500 letras).";
+        errorDescripcion.textContent = "La descripción es muy larga (máximo 500 letras).";
         control = false;
     } else {
-        document.getElementById('errorDescripcion').textContent = "";
+        errorDescripcion.textContent = "";
     }
 
     // Valida que el precio sea un número mayor que 0
     if (isNaN(precio) || precio <= 0) {
-        document.getElementById('errorPrecio').textContent = "El precio debe ser un número positivo.";
+        errorPrecio.textContent = "El precio debe ser un número positivo.";
         control = false;
     } else {
-        document.getElementById('errorPrecio').textContent = "";
+        errorPrecio.textContent = "";
     }
 
     // Valida que el stock sea un número entero positivo (0 o mayor)
     if (isNaN(stock) || stock < 0 || !Number.isInteger(parseFloat(stock))) {
-        document.getElementById('errorStock').textContent = "El stock debe ser un número entero positivo.";
+        errorStock.textContent = "El stock debe ser un número entero positivo.";
         control = false;
     } else {
-        document.getElementById('errorStock').textContent = "";
+        errorStock.textContent = "";
     }
 
     // Valida que el alto sea un número positivo (solo si no está vacío)
     if (alto !== "" && (isNaN(alto) || alto <= 0)) {
-        document.getElementById('errorAlto').textContent = "El alto debe ser un número positivo.";
+        errorAlto.textContent = "El alto debe ser un número positivo.";
         control = false;
     } else {
-        document.getElementById('errorAlto').textContent = "";
+        errorAlto.textContent = "";
     }
 
     // Valida que el ancho sea un número positivo (solo si no está vacío)
     if (ancho !== "" && (isNaN(ancho) || ancho <= 0)) {
-        document.getElementById('errorAncho').textContent = "El ancho debe ser un número positivo.";
+        errorAncho.textContent = "El ancho debe ser un número positivo.";
         control = false;
     } else {
-        document.getElementById('errorAncho').textContent = "";
+        errorAncho.textContent = "";
     }
 
     // Valida que el largo sea un número positivo (solo si no está vacío)
     if (largo !== "" && (isNaN(largo) || largo <= 0)) {
-        document.getElementById('errorLargo').textContent = "El largo debe ser un número positivo.";
+        errorLargo.textContent = "El largo debe ser un número positivo.";
         control = false;
     } else {
-        document.getElementById('errorLargo').textContent = "";
+        errorLargo.textContent = "";
     }
 
     // Valida que el peso sea un número entero positivo (solo si no está vacío)
     if (peso !== "" && (isNaN(peso) || peso <= 0 || !Number.isInteger(parseFloat(peso)))) {
-        document.getElementById('errorPeso').textContent = "El peso debe ser un número entero positivo.";
+        errorPeso.textContent = "El peso debe ser un número entero positivo.";
         control = false;
     } else {
-        document.getElementById('errorPeso').textContent = "";
+        errorPeso.textContent = "";
     }
+
+    // Validación de la imagen
     if (!archivo) {
         errorImagen.textContent = "Debe seleccionar una imagen.";
         control = false;
@@ -121,14 +141,9 @@ function validarCampo() {
             errorImagen.textContent = "";
         }
     }
-    if (control == true){
-        formularioproductos.submit(document.getElementById('formularioproductos'));
-        
-    } else {
 
-        
-        return;
-
+    // Si no hay errores, envía el formulario
+    if (control) {
+        document.getElementById('formularioproductos').submit();
     }
-
 }
