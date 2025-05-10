@@ -77,20 +77,21 @@ include("../auth.php"); // Verifica si el usuario ha iniciado sesión
         <br>
         <div class="lista" style="display: flex; gap: 5px;">
             <label for="categoria">Categoría:</label>
-            <select name="categoria" style="margin-right: 30px; margin-left: 20px;">
+            <select name="categoria" id='categoria' style="margin-right: 30px; margin-left: 20px;">
                 <option value="0"></option>
                 <?php while ($categoria = mysqli_fetch_array($categorias)) { ?>
                 <option value="<?= $categoria['id'] ?>"><?= $categoria['nombre'] ?></option>
                 <?php } ?>
             </select>
-
+            <span class="error" id="errorCategoria"></span>
             <label for="marca">Marca:</label>
-            <select name="marca" style="margin-left: 20px;">
+            <select name="marca" id='marca' style="margin-left: 20px;">
                 <option value="0"></option>
                 <?php while ($marca = mysqli_fetch_array($marcas)) { ?>
                 <option value="<?= $marca['id'] ?>"><?= $marca['nombre'] ?></option>
                 <?php } ?>
             </select>
+            <span class="error" id="errorMarca"></span>
         </div>
 
         <button type="button" onclick="validarCampo()">Enviar</button>

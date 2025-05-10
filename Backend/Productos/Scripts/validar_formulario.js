@@ -17,6 +17,9 @@ function validarCampo() { // Detenemos el envío del formulario
     let stock = document.getElementById('stock').value;
     let errorStock = document.getElementById('errorStock');
 
+    let peso = document.getElementById('peso').value;
+    let errorPeso = document.getElementById('errorPeso');
+
     let alto = document.getElementById('alto').value;
     let errorAlto = document.getElementById('errorAlto');
 
@@ -25,13 +28,16 @@ function validarCampo() { // Detenemos el envío del formulario
 
     let largo = document.getElementById('largo').value;
     let errorLargo = document.getElementById('errorLargo');
-
-    let peso = document.getElementById('peso').value;
-    let errorPeso = document.getElementById('errorPeso');
-
+    
     let imagenInput = document.getElementById('imagen'); 
     let archivo = imagenInput.files[0]; // Obtener el archivo correctamente
     let errorImagen = document.getElementById('errorImagen');
+
+    let categoria = document.getElementById('categoria').value;
+    let errorCategoria = document.getElementById('errorCategoria');
+
+    let marca = document.getElementById('marca').value;
+    let errorMarca = document.getElementById('errorMarca');
 
     // 🟢 **Validación de caracteres entre 2 y 50**
     if (referencia.length < 2 || referencia.length > 50) {
@@ -69,8 +75,8 @@ function validarCampo() { // Detenemos el envío del formulario
     }
 
     // Valida que la descripción no exceda los 500 caracteres
-    if (descripcion.length > 500) {
-        errorDescripcion.textContent = "La descripción es muy larga (máximo 500 letras).";
+    if (descripcion.length < 2 || descripcion.length > 500) {
+        errorDescripcion.textContent = "Descripción debe ser entre 2 y 500 caracteres.";
         control = false;
     } else {
         errorDescripcion.textContent = "";
@@ -91,39 +97,31 @@ function validarCampo() { // Detenemos el envío del formulario
     } else {
         errorStock.textContent = "";
     }
-
-    // Valida que el alto sea un número positivo (solo si no está vacío)
-    if (alto !== "" && (isNaN(alto) || alto <= 0)) {
-        errorAlto.textContent = "El alto debe ser un número positivo.";
+        // Valida que el peso sea un número entero positivo (solo si no está vacío)
+    if (peso === "" || isNaN(peso) || peso <= 0 || !Number.isInteger(parseFloat(peso))) {
+        console.log("Error: Peso inválido.");
+        document.getElementById('errorPeso').textContent = "El peso debe ser un número entero positivo.";
         control = false;
-    } else {
-        errorAlto.textContent = "";
     }
-
-    // Valida que el ancho sea un número positivo (solo si no está vacío)
-    if (ancho !== "" && (isNaN(ancho) || ancho <= 0)) {
-        errorAncho.textContent = "El ancho debe ser un número positivo.";
+    
+    if (alto === "" || isNaN(alto) || alto <= 0) {
+        console.log("Error: Alto inválido.");
+        document.getElementById('errorAlto').textContent = "El alto debe ser un número positivo.";
         control = false;
-    } else {
-        errorAncho.textContent = "";
     }
-
-    // Valida que el largo sea un número positivo (solo si no está vacío)
-    if (largo !== "" && (isNaN(largo) || largo <= 0)) {
-        errorLargo.textContent = "El largo debe ser un número positivo.";
+    
+    if (ancho === "" || isNaN(ancho) || ancho <= 0) {
+        console.log("Error: Ancho inválido.");
+        document.getElementById('errorAncho').textContent = "El ancho debe ser un número positivo.";
         control = false;
-    } else {
-        errorLargo.textContent = "";
     }
-
-    // Valida que el peso sea un número entero positivo (solo si no está vacío)
-    if (peso !== "" && (isNaN(peso) || peso <= 0 || !Number.isInteger(parseFloat(peso)))) {
-        errorPeso.textContent = "El peso debe ser un número entero positivo.";
+    
+    if (largo === "" || isNaN(largo) || largo <= 0) {
+        console.log("Error: Largo inválido.");
+        document.getElementById('errorLargo').textContent = "El largo debe ser un número positivo.";
         control = false;
-    } else {
-        errorPeso.textContent = "";
     }
-
+        
     // Validación de la imagen
     if (!archivo) {
         errorImagen.textContent = "Debe seleccionar una imagen.";
@@ -140,6 +138,23 @@ function validarCampo() { // Detenemos el envío del formulario
         } else {
             errorImagen.textContent = "";
         }
+    }
+    
+    if (categoria == "0") {
+        console.log("Error: No se ha seleccionado una categoría.");
+        errorCategoria.textContent = "Debe seleccionar una categoría.";
+        control = false;
+    } else {
+        errorCategoria.textContent = "";
+    }
+    
+    // Validación de marca
+    if (marca == "0") {
+        console.log("Error: No se ha seleccionado una marca.");
+        errorMarca.textContent = "Debe seleccionar una marca.";
+        control = false;
+    } else {
+        errorMarca.textContent = "";
     }
 
     // Si no hay errores, envía el formulario
