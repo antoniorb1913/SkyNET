@@ -88,7 +88,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     mysqli_close($conn);
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -98,28 +97,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <link rel="stylesheet" href="../Estilos/login.css" />
 </head>
 <body>
-    <!-- Barra superior -->
-    <div class="top-bar">
-        <div class="top-bar-left">
-            <a href="#"><i class="fas fa-phone-alt"></i> 900 123 456</a>
-            <a href="#"><i class="fas fa-map-marker-alt"></i> Tiendas</a>
-            <a href="#"><i class="fas fa-truck"></i> Estado del pedido</a>
-        </div>
-        <div class="top-bar-right">
-            <a href="#"><i class="fas fa-headset"></i> Soporte</a>
-            <a href="#"><i class="fas fa-info-circle"></i> Ayuda</a>
-            <a href="#"><i class="fas fa-percent"></i> Ofertas</a>
-        </div>
+    <div class="logo">
+        <img src="../LOGO/Logo_completo.png" alt="SkyNET Logo">
     </div>
-    
-    <!-- Header principal -->
-    <header>
-        <a href="index.php" class="logo">
-            <i class="fas fa-desktop logo-icon"></i>
-            SkyNet
-        </a>
-    </header>
-    
     <div class="login-container">
         <h1>Iniciar Sesión</h1>
         

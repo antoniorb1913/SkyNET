@@ -76,7 +76,7 @@ function validarCampo() { // Detenemos el envío del formulario
 
     // Valida que la descripción no exceda los 500 caracteres
     if (descripcion.length < 2 || descripcion.length > 500) {
-        errorDescripcion.textContent = "Descripción debe ser entre 2 y 500 caracteres.";
+        errorDescripcion.textContent = "Descripción debe tener entre 2 y 500 caracteres.";
         control = false;
     } else {
         errorDescripcion.textContent = "";
@@ -104,21 +104,21 @@ function validarCampo() { // Detenemos el envío del formulario
         control = false;
     }
     
-    if (alto === "" || isNaN(alto) || alto <= 0) {
+    if (alto === "" || isNaN(alto) || alto <= 0 || !Number.isInteger(parseFloat(alto))) {
         console.log("Error: Alto inválido.");
-        document.getElementById('errorAlto').textContent = "El alto debe ser un número positivo.";
+        document.getElementById('errorAlto').textContent = "El alto debe ser un número entero positivo.";
         control = false;
     }
     
-    if (ancho === "" || isNaN(ancho) || ancho <= 0) {
+    if (ancho === "" || isNaN(ancho) || ancho <= 0 || !Number.isInteger(parseFloat(ancho))) {
         console.log("Error: Ancho inválido.");
-        document.getElementById('errorAncho').textContent = "El ancho debe ser un número positivo.";
+        document.getElementById('errorAncho').textContent = "El ancho debe ser un número entero positivo.";
         control = false;
     }
     
-    if (largo === "" || isNaN(largo) || largo <= 0) {
+    if (largo === "" || isNaN(largo) || largo <= 0 || !Number.isInteger(parseFloat(largo))) {
         console.log("Error: Largo inválido.");
-        document.getElementById('errorLargo').textContent = "El largo debe ser un número positivo.";
+        document.getElementById('errorLargo').textContent = "El largo debe ser un número entero positivo.";
         control = false;
     }
         
