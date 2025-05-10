@@ -241,7 +241,6 @@ function removeFilter($tipo, $id) {
     <nav>
       <a href="index.php">Inicio</a>
       <a href="#">Productos</a>
-      <a href="#">Ofertas</a>
       <a href="../PaginaWeb/soporte.php">Soporte</a>
       <a href="../PaginaWeb/contacto.php">Contacto</a>
     </nav>
