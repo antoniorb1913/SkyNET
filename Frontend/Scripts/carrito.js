@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 <span class="cart-subtotal-price">€0,00</span>
             </div>
             <div class="cart-buttons">
-                <button class="view-cart">Ver carrito</button>
                 <button class="checkout">Finalizar compra</button>
             </div>
         </div>
@@ -380,11 +379,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Manejadores de eventos para los botones de navegación del carrito
-    document.querySelector('.view-cart').addEventListener('click', function() {
-        // Redirigir a la página del carrito
-        window.location.href = 'carrito.php';
-    });
 
     document.querySelector('.checkout').addEventListener('click', function() {
         // Redirigir a la página de checkout

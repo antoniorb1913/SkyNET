@@ -39,14 +39,14 @@ function validarCampo() { // Detenemos el envío del formulario
     let marca = document.getElementById('marca').value;
     let errorMarca = document.getElementById('errorMarca');
 
-    // 🟢 **Validación de caracteres entre 2 y 50**
+    // Validación de caracteres entre 2 y 50
     if (referencia.length < 2 || referencia.length > 50) {
         console.log("Error: La referencia tiene menos de 2 o más de 50 caracteres.");
         errorReferencia.textContent = "Debe tener entre 2 y 50 caracteres.";
         control = false;
     }
 
-    // 🔴 **Nueva validación para garantizar al menos una letra y un número**
+    // Nueva validación para garantizar al menos una letra y un número
     if (!/[a-zA-Z]/.test(referencia)) {
         console.log("Error: La referencia NO tiene letras.");
         errorReferencia.textContent = "Debe contener al menos una letra.";
