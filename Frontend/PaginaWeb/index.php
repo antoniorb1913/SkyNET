@@ -116,7 +116,7 @@
 </head>
 <body>
     <header class="hero">
-        <img src="../LOGO/Logo sin fondo.png" alt="SkyNet Logo">
+        <img src="../LOGO/logoblanco.png" alt="SkyNet Logo">
         <h1>"SkyNet, donde el cielo toca el infinito"</h1>
         <p>Innovación, tecnología y soluciones inteligentes para tu vida digital.</p>
         <a href="contacto.php">Contáctanos</a>
