@@ -36,7 +36,6 @@ $filtros = [
     'mostrar' => isset($_GET['mostrar']) ? $_GET['mostrar'] : 12
 ];
 
-// Construir la consulta SQL base
 $sql = "SELECT p.*, c.nombre as categoria, m.nombre as marca 
         FROM productos p 
         LEFT JOIN categorias c ON p.categoria_id = c.id 
@@ -46,13 +45,12 @@ $sql = "SELECT p.*, c.nombre as categoria, m.nombre as marca
 $params = [];
 $tipos = "";
 
-// Filtro de búsqueda
+// Filtro de búsqueda (SOLO POR NOMBRE)
 if (!empty($filtros['buscar'])) {
-    $sql .= " AND (p.nombre LIKE ? OR p.descripcion LIKE ?)";
+    $sql .= " AND p.nombre LIKE ?";
     $searchTerm = '%' . $filtros['buscar'] . '%';
     $params[] = $searchTerm;
-    $params[] = $searchTerm;
-    $tipos .= "ss";
+    $tipos .= "s";
 }
 
 // Filtro de categorías
@@ -123,13 +121,11 @@ $sql_count = "SELECT COUNT(*) as total FROM productos p WHERE p.deleted_at IS NU
 $count_params = [];
 $count_tipos = "";
 
-// Aplicar los mismos filtros a la consulta de conteo
+// Aplicar filtro de búsqueda a la consulta de conteo (SOLO POR NOMBRE)
 if (!empty($filtros['buscar'])) {
-    $sql_count .= " AND (p.nombre LIKE ? OR p.descripcion LIKE ?)";
-    $searchTerm = '%' . $filtros['buscar'] . '%';
+    $sql_count .= " AND p.nombre LIKE ?";
     $count_params[] = $searchTerm;
-    $count_params[] = $searchTerm;
-    $count_tipos .= "ss";
+    $count_tipos .= "s";
 }
 
 if (!empty($filtros['categorias'])) {
