@@ -3,29 +3,64 @@ session_start();
 require_once "config.php";
 
 $mensaje_enviado = false;
+$error = '';
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Verificar si el usuario está logueado y obtener su ID
-    if (!isset($_SESSION["id"])) {
-        die("Error: Debes iniciar sesión para enviar una consulta.");
+    // Obtener y sanitizar datos
+    $nombre = trim($_POST['nombre'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $asunto = trim($_POST['asunto'] ?? '');
+    $mensaje = trim($_POST['mensaje'] ?? '');
+    
+    // Inicializar cliente_id como NULL
+    $cliente_id = null;
+
+    // Validaciones básicas
+    if (empty($nombre) || empty($email) || empty($asunto) || empty($mensaje)) {
+        $error = "Todos los campos son obligatorios";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error = "El email no tiene un formato válido";
+    } else {
+        try {
+            // Verificar si el email existe en la tabla de clientes
+            $stmt_check = $conn->prepare("SELECT id FROM clientes WHERE email = ?");
+            $stmt_check->bind_param("s", $email);
+            $stmt_check->execute();
+            $result = $stmt_check->get_result();
+            
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $cliente_id = $row['id'];
+            }
+            
+            $stmt_check->close();
+            
+            // Preparar la consulta para insertar en soporte
+            $stmt = $conn->prepare("INSERT INTO soporte 
+                                  (nombre, email, asunto, mensaje, cliente_id, fecha_entrada, estado) 
+                                  VALUES (?, ?, ?, ?, ?, NOW(), 'pendiente')");
+            
+            if (!$stmt) {
+                throw new Exception("Error al preparar la consulta: " . $conn->error);
+            }
+            
+            $stmt->bind_param("ssssi", $nombre, $email, $asunto, $mensaje, $cliente_id);
+            
+            if ($stmt->execute()) {
+                $stmt->close();
+                header("Location: agradecimiento.php");
+                exit();
+            } else {
+                throw new Exception("Error al ejecutar la consulta: " . $stmt->error);
+            }
+            
+        } catch (Exception $e) {
+            $error = "Error al procesar tu solicitud: " . $e->getMessage();
+            error_log($e->getMessage());
+        }
     }
-
-    $cliente_id = $_SESSION["id"]; // ID del cliente desde la sesión
-    $nombre = $_POST['nombre'] ?? '';
-    $email = $_POST['email'] ?? '';
-    $asunto = $_POST['asunto'] ?? '';
-    $mensaje = $_POST['mensaje'] ?? '';
-
-    // Preparar la consulta con el cliente_id
-    $stmt = $conn->prepare("INSERT INTO soporte (nombre, email, asunto, mensaje, cliente_id, fecha_entrada) VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP)");
-    $stmt->bind_param("ssssi", $nombre, $email, $asunto, $mensaje, $cliente_id);
-
-    if ($stmt->execute()) {
-        $mensaje_enviado = true;
-    }
-    $stmt->close();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -84,34 +119,37 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <body>
     <main class="form-container">
         <h2>Formulario de Soporte</h2>
-
         <?php if ($mensaje_enviado): ?>
             <p class="success-msg">Tu mensaje ha sido enviado. Nos pondremos en contacto contigo pronto.</p>
+        <?php else: ?>
+            <?php if (!empty($error)): ?>
+                <p class="error-msg"><?php echo htmlspecialchars($error); ?></p>
+            <?php endif; ?>
+            <form method="POST" action="">
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required 
+                           value="<?php echo isset($_POST['nombre']) ? htmlspecialchars($_POST['nombre']) : ''; ?>">
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo electrónico:</label>
+                    <input type="email" id="email" name="email" required
+                           value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
+                </div>
+                <div class="form-group">
+                    <label for="asunto">Asunto:</label>
+                    <input type="text" id="asunto" name="asunto" required
+                           value="<?php echo isset($_POST['asunto']) ? htmlspecialchars($_POST['asunto']) : ''; ?>">
+                </div>
+                <div class="form-group">
+                    <label for="mensaje">Mensaje:</label>
+                    <textarea id="mensaje" name="mensaje" rows="5" required><?php 
+                        echo isset($_POST['mensaje']) ? htmlspecialchars($_POST['mensaje']) : ''; 
+                    ?></textarea>
+                </div>
+                <input type="submit" class="btn-submit" value="Enviar">
+            </form>
         <?php endif; ?>
-
-        <form method="POST" action="agradecimiento.php">
-            <div class="form-group">
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required>
-            </div>
-
-            <div class="form-group">
-                <label for="email">Correo electrónico:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-
-            <div class="form-group">
-                <label for="asunto">Asunto:</label>
-                <input type="text" id="asunto" name="asunto" required>
-            </div>
-
-            <div class="form-group">
-                <label for="mensaje">Mensaje:</label>
-                <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
-            </div>
-
-            <input type="submit" class="btn-submit" value="Enviar">
-        </form>
     </main>
 </body>
 </html>

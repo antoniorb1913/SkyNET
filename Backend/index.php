@@ -32,6 +32,7 @@ include("auth.php"); // Protección de la página
         <li><a href="Productos/formulario_productos.php">Formulario productos</a></li>
         <li><a href="Productos/list_productos.php">Listado productos</a></li>
         <li><a href="historial/list_historial.php">Historial ventas</a></li>
+        <li><a href="soporte/list_soporte.php">Listado incidendcias / preguntas</a></li>
         </ul>
         </form>
     </div>
