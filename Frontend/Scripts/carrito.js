@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let cartOpen = false;
 
     // Manejador para abrir el carrito
-    const cartButton = document.querySelector('.icons a:nth-child(3)');
+    const cartButton = document.querySelector('.icons a:nth-child(2)');
     if (cartButton) {
         cartButton.addEventListener('click', function(e) {
             e.preventDefault();
@@ -381,7 +381,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     document.querySelector('.checkout').addEventListener('click', function() {
-        // Redirigir a la página de checkout
-        window.location.href = 'checkout.php';
+        if (cartItems.length > 0) {
+            window.location.href = 'checkout.php';
+        } else {
+            alert('Por favor, agrega productos al carrito antes de finalizar la compra.');
+        }
     });
 });

@@ -300,10 +300,12 @@ function removeFilter($tipo, $id) {
     </form>
 
     <div class="icons">
-      <a href="login.php"><i class="fas fa-user"></i></a>
-      <a href="#"><i class="fas fa-heart"></i></a>
-      <a href="#"><i class="fas fa-shopping-cart"></i></a>
-    </div>
+  <a href="login.php"><i class="fas fa-user"></i></a>
+  <a href="#" id="cart-icon" class="cart-icon">
+    <i class="fas fa-shopping-cart"></i>
+    <span id="cart-badge" class="cart-badge"></span>
+  </a>
+</div>
   </header>
 
   <div class="breadcrumb">
