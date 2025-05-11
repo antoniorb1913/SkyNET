@@ -71,24 +71,31 @@ return '?' . http_build_query($params);
 </head>
 <body>
     <header>
-        <div style="width: 90px; height: auto; padding: 5px; box-sizing: border-box;">
-        <img class="logo"src="../LOGO/Logo sin fondo.png" alt="Logo">
-        </div>
-        <nav>
-            <a href="index.php">Inicio</a>
-            <a href="interfaz.php">Productos</a>
-            <a href="../PaginaWeb/soporte.php">Soporte</a>
-        </nav>
+  <div style="width: 90px; height: auto; padding: 5px; box-sizing: border-box;">
+  <img class="logo" src="../LOGO/Logo sin fondo.png" alt="Logo">
+</div>
+
+    <nav>
+      <a href="index.php">Inicio</a>
+      <a href="interfaz.php">Productos</a>
+      <a href="../PaginaWeb/soporte.php">Soporte</a>
+    </nav>
+    <form method="GET" action="">
         <div class="search-container">
-            <input type="text" placeholder="Buscar productos...">
-            <button><i class="fas fa-search"></i></button>
+            <input type="text" name="buscar" placeholder="Buscar productos..." 
+                   value="<?= isset($_GET['buscar']) ? htmlspecialchars($_GET['buscar']) : '' ?>" required>
+            <button type="submit"><i class="fas fa-search"></i></button>
         </div>
-        <div class="icons">
-            <a href="#"><i class="fas fa-user"></i></a>
-            <a href="#"><i class="fas fa-heart"></i></a>
-            <a href="#"><i class="fas fa-shopping-cart"></i></a>
-        </div>
-    </header>
+    </form>
+
+    <div class="icons">
+  <a href="login.php"><i class="fas fa-user"></i></a>
+  <a href="#" id="cart-icon" class="cart-icon">
+    <i class="fas fa-shopping-cart"></i>
+    <span id="cart-badge" class="cart-badge"></span>
+  </a>
+</div>
+  </header>
 
 <div class="breadcrumb">
     <a href="index.php">Inicio</a> > <a href="interfaz.php">Productos</a> 

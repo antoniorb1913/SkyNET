@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="checkout-container">
-        <button class="btn-back" onclick="window.location.href='carrito.php'">
+        <button class="btn-back" onclick="window.location.href='interfaz.php'">
             <i class="fas fa-arrow-left"></i> Volver al carrito
         </button>
         
