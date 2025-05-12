@@ -45,7 +45,11 @@ try {
     if ($stock_disponible >= $cantidad) {
         echo json_encode(['success' => true, 'stock' => $stock_disponible]);
     } else {
-        echo json_encode(['success' => false, 'message' => "Stock insuficiente. Disponible: $stock_disponible"]);
+        echo json_encode([
+            'success' => false,
+            'message' => "Stock insuficiente. Disponible: $stock_disponible",
+            'redirect' => 'interfaz.php'
+        ]);
     }
 
 } catch (Exception $e) {
