@@ -8,7 +8,7 @@ que poner lo que ha generado este php que es la contraseña @dminSkN encriptada,
 iniciar sesion usuario admin contraseña @dminSkN
 
 INSERT INTO admin (nombre, email, contrasena, created_at) 
-VALUES ('admin', 'admin@skynet.com', '$2y$10$OHMD0hhgo36Ky9VyAWD2C.GvVCNowtm6JnALe3hZIt2ZNsZitICya', NOW());*/
+VALUES ('admin', 'admin@skynet.com', '$2y$10$6p70EFEBldLCTdZArp99SOpm8HM9lZFIyD6niJwAYUnRfXH9FstlG', NOW());*/
 ?>
 
 
