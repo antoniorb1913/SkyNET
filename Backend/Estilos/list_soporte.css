@@ -18,12 +18,32 @@ form {
     max-width: 100%;
     margin: auto;
 }
+.filtros {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
 
 
 .logo {
-    text-align: right;
+    margin-left: auto;
+    display: flex;
+    align-items: center; 
+    margin-right: 1%;
 }
 
+
+.logo img {
+    height: 130px;
+    width: 80px;
+}
+select, .filtros input {
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
 
 
 /* Estilo para la tabla */

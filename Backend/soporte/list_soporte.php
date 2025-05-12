@@ -20,9 +20,24 @@ include("../auth.php");
 $consulta_soporte = "SELECT s.id as id, s.nombre as nombre, s.email as email, s.asunto as asunto, s.mensaje as mensaje,
                     s.fecha_entrada as fecha_entrada, s.estado as estado, s.cliente_id as cliente, s.created_at
                     FROM soporte s
-                    LEFT JOIN clientes c ON s.cliente_id = c.id
-                    ORDER BY s.fecha_entrada ASC";
+                    LEFT JOIN clientes c ON s.cliente_id = c.id";
 
+$filtro_nombre='';
+
+if(isset($_REQUEST) && count($_REQUEST)>0) {
+    $condiciones = " where true";
+    $filtro_nombre = $_REQUEST['nombre'];
+
+
+    if ($filtro_nombre){
+        $condiciones .= " AND s.nombre LIKE '%".$filtro_nombre."%'";
+    }
+
+
+$consulta_soporte .= $condiciones;
+
+}
+$consulta_soporte .= " ORDER BY s.nombre ASC";
 $listado_soporte = mysqli_query( $conexion, $consulta_soporte);
 
 ?>
@@ -36,15 +51,19 @@ $listado_soporte = mysqli_query( $conexion, $consulta_soporte);
     
 </head>
 <body>
-        <div class="logo">
+    <br>
+    <form id="formularioproductos" method="post" action="list_soporte.php">
+    <div class="filtros" style="display: flex; gap: 5px;">    
+    <label for="nombre" style="margin-left: 20px;">Nombre:</label>
+    <input type="text" name="nombre" id='nombre' style="width: 250px; height: 15px; margin-right: 30px; margin-left: 10px;">
+    <input type="submit" style="width: 100px; font-size: 18px; background-color: #007bff; color: rgb(255, 255, 255)"></input>
+    <div class="logo">
         <a href="/Backend">
         <img src="../logo.png" style="height: 120px; width: 120px;">
         </a>
     </div>
-    <br>
-    <form id="formularioproductos" method="post" action="list_soporte.php">
     </div>
-    </div>
+    
     <br>
     <br>
     <?php
