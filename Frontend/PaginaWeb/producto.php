@@ -130,9 +130,6 @@ return '?' . http_build_query($params);
                     <p class="product-category">Categoría: <strong><?= htmlspecialchars($producto['categoria']) ?></strong></p>
                     <?php endif; ?>
                     
-                    <div class="product-description">
-                        <?= nl2br(htmlspecialchars($producto['descripcion'])) ?>
-                    </div>
                     
                     <div class="product-meta">
                         <div class="availability">Disponibilidad: <span class="in-stock">En stock</span></div>
@@ -189,18 +186,12 @@ return '?' . http_build_query($params);
             <div class="product-tabs">
                 <div class="tabs-header">
                     <button class="tab-btn active" data-tab="description">Descripción</button>
-                    <button class="tab-btn" data-tab="specs">Especificaciones</button>
                     <button class="tab-btn" data-tab="reviews">Opiniones</button>
                 </div>
                 
                 <div class="tabs-content">
                     <div class="tab-pane active" id="description">
-                        <h3>Descripción detallada</h3>
-                        <p><?= nl2br(htmlspecialchars($producto['descripcion'])) ?></p>
-                    </div>
-                    
-                    <div class="tab-pane" id="specs">
-                        <h3>Especificaciones técnicas</h3>
+                        <h3>Descripción</h3>
                         <table class="specs-table">
                             <tr>
                                 <th>Marca</th>
@@ -214,7 +205,11 @@ return '?' . http_build_query($params);
                                 <th>Código de producto</th>
                                 <td><?= htmlspecialchars($producto['id']) ?></td>
                             </tr>
-                            <!-- Más especificaciones podrían añadirse aquí -->
+                                <tr>
+                                <th>Descripción</th>
+                                <td><?= nl2br(htmlspecialchars($producto['descripcion'])) ?></td>
+                            </tr>
+                            
                         </table>
                     </div>
                     
