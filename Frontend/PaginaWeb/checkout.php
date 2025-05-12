@@ -98,41 +98,9 @@
                         
                         <div id="new-address-form" <?php if(isset($_SESSION['cliente_id'])) echo 'style="display: none;"'; ?>>
                             <div class="form-group">
-                                <label for="direccion" class="required-field">Dirección</label>
-                                <input type="text" class="form-control" id="direccion" name="direccion" required>
-                                <div class="error-message" id="direccion-error">Por favor ingresa tu dirección</div>
-                            </div>
-                            
-                            <div class="form-row">
-                                <div class="col form-group">
-                                    <label for="codigo_postal" class="required-field">Código Postal</label>
-                                    <input type="text" class="form-control" id="codigo_postal" name="codigo_postal" required>
-                                    <div class="error-message" id="codigo_postal-error">Por favor ingresa un código postal válido</div>
-                                </div>
-                                <div class="col form-group">
-                                    <label for="ciudad" class="required-field">Ciudad</label>
-                                    <input type="text" class="form-control" id="ciudad" name="ciudad" required>
-                                    <div class="error-message" id="ciudad-error">Por favor ingresa tu ciudad</div>
-                                </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="provincia" class="required-field">Provincia</label>
-                                <input type="text" class="form-control" id="provincia" name="provincia" required>
-                                <div class="error-message" id="provincia-error">Por favor ingresa tu provincia</div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="pais" class="required-field">País</label>
-                                <select class="form-control" id="pais" name="pais" required>
-                                    <option value="">Selecciona un país</option>
-                                    <option value="ES">España</option>
-                                    <option value="PT">Portugal</option>
-                                    <option value="FR">Francia</option>
-                                    <option value="IT">Italia</option>
-                                    <option value="DE">Alemania</option>
-                                </select>
-                                <div class="error-message" id="pais-error">Por favor selecciona un país</div>
+                                <label for="direccion" class="required-field">Dirección completa</label>
+                                <input type="text" class="form-control" id="direccion" name="direccion" required placeholder="Ej: Calle Ejemplo 123, 28001 Madrid, Madrid, España">
+                                <div class="error-message" id="direccion-error">Por favor ingresa tu dirección completa</div>
                             </div>
                             
                             <?php if(isset($_SESSION['cliente_id'])): ?>
@@ -167,30 +135,7 @@
                             </div>
                             
                             <div class="payment-details" id="tarjeta-details">
-                                <div class="form-group">
-                                    <label for="num_tarjeta" class="required-field">Número de tarjeta</label>
-                                    <input type="text" class="form-control" id="num_tarjeta" name="num_tarjeta" placeholder="XXXX XXXX XXXX XXXX">
-                                    <div class="error-message" id="num_tarjeta-error">Por favor ingresa un número de tarjeta válido</div>
-                                </div>
-                                
-                                <div class="form-row">
-                                    <div class="col form-group">
-                                        <label for="exp_date" class="required-field">Fecha de expiración</label>
-                                        <input type="text" class="form-control" id="exp_date" name="exp_date" placeholder="MM/AA">
-                                        <div class="error-message" id="exp_date-error">Por favor ingresa una fecha válida</div>
-                                    </div>
-                                    <div class="col form-group">
-                                        <label for="cvv" class="required-field">CVV</label>
-                                        <input type="text" class="form-control" id="cvv" name="cvv" placeholder="123">
-                                        <div class="error-message" id="cvv-error">Por favor ingresa el código de seguridad</div>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="titular" class="required-field">Titular de la tarjeta</label>
-                                    <input type="text" class="form-control" id="titular" name="titular">
-                                    <div class="error-message" id="titular-error">Por favor ingresa el nombre del titular</div>
-                                </div>
+                                <p>Los pagos con tarjeta se procesan de forma segura a través de nuestra pasarela de pago externa. Serás redirigido al confirmar el pedido.</p>
                             </div>
                             
                             <div class="payment-method" data-method="paypal">
@@ -248,8 +193,6 @@
                             <div class="confirmation-section">
                                 <h3>Dirección de envío</h3>
                                 <p id="confirm-direccion"></p>
-                                <p id="confirm-ciudad-cp"></p>
-                                <p id="confirm-provincia-pais"></p>
                             </div>
                             
                             <div class="confirmation-section">

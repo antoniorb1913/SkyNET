@@ -76,7 +76,9 @@ create table ventas ( /*asociada a un carrito*/
 create table impuestos (
     id int primary key auto_increment,
     nombre varchar(100),
-    porcentaje decimal(5,2)
+    porcentaje decimal(5,2),
+    created_at datetime,
+    updated_at datetime
 
 );
 
