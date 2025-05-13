@@ -395,7 +395,6 @@ function removeFilter($tipo, $id) {
         <div class="view-options">
           <span>Ver:</span>
           <button class="view-grid active"><i class="fas fa-th"></i></button>
-          <button class="view-list"><i class="fas fa-list"></i></button>
           <span>Mostrar:</span>
           <select onchange="window.location.href=this.value">
             <option value="<?= buildFilterUrl(['mostrar' => 12, 'page' => 1]) ?>" <?= $filtros['mostrar'] == 12 ? 'selected' : '' ?>>12</option>
