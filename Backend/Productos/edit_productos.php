@@ -106,7 +106,7 @@ if (isset($_REQUEST['id'])) {
         <h1><?php echo $editar?"Editar":"Nuevo";?> Producto</h1>  
     </div>
     <div class="formulario">
-        <form id="formularioproductos" method="post" action="alta_productos.php">
+        <form id="formularioproductos" method="post" action="alta_productos.php" enctype="multipart/form-data">
             <?php
             if ($editar) {
                 echo '<input type="hidden" value="'.$producto['id'].'"name="idProducto"/>';
@@ -133,12 +133,17 @@ if (isset($_REQUEST['id'])) {
                 <label for="stock">Stock:</label>
                 <input type="number" name="stock" id='stock' style="margin-left: 20px;" value="<?php echo $editar?$producto['stock']:''?>">
                 <span class="error" id="errorStock"></span>
+
+                <label for="peso">Peso:</label>
+                <input type="number" name="peso" id='peso' style="margin-left: 20px; "value="<?php echo $editar?$producto['peso']:''?>">
+                <span class="error" id="errorPeso"></span>
             </div>
             <br>
             <div class="dimensiones" style="display: flex; gap: 5px;">
-                <label for="stock">Alto:</label>
+                <label for="alto">Alto:</label>
                 <input type="number" name="alto" id='alto' style="margin-left: 20px;" value="<?php echo $editar?$producto['alto']:''?>">
                 <span class="error" id="errorAlto"></span>
+                
 
                 <label for="ancho">ancho:</label>
                 <input type="number" name="ancho" id='ancho' style="margin-left: 20px; " value="<?php echo $editar?$producto['ancho']:''?>">
@@ -149,11 +154,13 @@ if (isset($_REQUEST['id'])) {
                 <span class="error" id="errorLargo"></span>
             </div>
             <br>
-            <div class="peso" style="display: flex;">
-                <label for="peso">Peso:</label>
-                <input type="number" name="peso" id='peso' style="margin-left: 20px; "value="<?php echo $editar?$producto['peso']:''?>">
-                <span class="error" id="errorPeso"></span>
+            <div class="cuimagen" style="display: flex;">
+                <label for="nimagen" style="margin-right: 10px;">Nombre imagen:</label>
+                <input type="text" name="nimagen" id='nimagen' style="width: 200px;" >
+                <input type="file" name="imagen" id='imagen' style="width: 380px; margin-left: 30px; ">
+                <span class="error" id="errorImagen"></span>
             </div>
+            <br>
             <br>
             <div class="lista" style="display: flex; gap: 5px;">
             <label for="categoria">Categoría:</label>

@@ -55,7 +55,7 @@ include("../auth.php"); // Verifica si el usuario ha iniciado sesión
         </div>
         <br>
         <div class="dimensiones" style="display: flex; gap: 5px;">
-            <label for="stock">Alto:</label>
+            <label for="alto">Alto:</label>
             <input type="number" name="alto" id='alto' style="margin-left: 20px; ">
             <span class="error" id="errorAlto"></span>
 
