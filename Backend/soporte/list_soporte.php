@@ -81,8 +81,8 @@ $listado_soporte = mysqli_query( $conexion, $consulta_soporte);
                     <td>".$fila['fecha_entrada']."</td>
                     <td>".$fila['estado']."</td>
                     <td>".$fila['cliente']."</td>
-                    <td> <a href='proceso_soporte.php? id=".$fila['id']."'> <img src='../Productos/imagenes/borrar.png' class='bmea'> </a>
-                    <a href='finalizar_soporte.php? id=".$fila['id']."'> <img src='../Productos/imagenes/borrar.png' class='bmea'> </a>
+                    <td> <a href='proceso_soporte.php? id=".$fila['id']."'> <img src='../Productos/imagenes/proceso.png' class='bmea'> </a>&nbsp;
+                    <a href='finalizar_soporte.php? id=".$fila['id']."'> <img src='../Productos/imagenes/check.png' class='bmea'> </a>&nbsp;
                     <a href='borrar_soporte.php? id=".$fila['id']."'> <img src='../Productos/imagenes/borrar.png' class='bmea'> </a></td></tr>";
                 }
 
