@@ -335,7 +335,7 @@ function removeFilter($tipo, $id) {
     </br>
     </br>
     <div class="breadcrumb">
-        <a href="#">Inicio</a> / <span>Productos</span>
+        <a href="../index.php">Inicio</a> / <span>Productos</span>
     </div>
 
     <h1 class="page-title">Catálogo de Productos</h1>
