@@ -71,6 +71,13 @@ function buildFilterUrl($nuevos_params = []) {
             justify-content: space-between;
             padding: 10px 20px;
             background-color: #f8f9fa;
+            position: fixed;
+            top: 0; /* Mantiene la barra en la parte superior */
+            left: 0;
+            width: 100%; /* Ocupa todo el ancho */
+            max-width: 99%;
+            z-index: 600; /* Asegura que esté por encima de otros elementos */
+
         }
         .icons {
             display: flex;
@@ -88,6 +95,7 @@ function buildFilterUrl($nuevos_params = []) {
         }
         .cart-icon {
             position: relative;
+            margin-right: 30px;
         }
         .cart-badge {
             position: absolute;
@@ -98,6 +106,21 @@ function buildFilterUrl($nuevos_params = []) {
             border-radius: 50%;
             padding: 2px 6px;
             font-size: 0.8em;
+        }
+        .inst, .pint {
+            width: 1em;
+            height: auto;
+            vertical-align: middle;
+        }
+        .redes {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .redes p {
+            flex: 1; /* Ocupa el espacio disponible */
+            text-align: center; /* Centra el texto */
         }
     </style>
 </head>
@@ -130,6 +153,13 @@ function buildFilterUrl($nuevos_params = []) {
             </a>
         </div>
     </header>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+
 
     <div class="breadcrumb">
         <a href="index.php">Inicio</a> > <a href="interfaz.php">Productos</a> 
@@ -261,7 +291,11 @@ function buildFilterUrl($nuevos_params = []) {
     </main>
 
     <footer>
+        <div class="redes">
         <p>© 2025 SkyNET. Todos los derechos reservados.</p>
+        <a href="https://www.instagram.com/skynet.oficiall/" > <img src='/Backend/Productos/imagenes/instagram.png' class="inst"></a>
+        <a href="https://es.pinterest.com/slskynet/"> <img src='/Backend/Productos/imagenes/pinterest.png' class="pint"></a>
+        </div>
     </footer>
 
     <script>

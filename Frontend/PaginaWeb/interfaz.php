@@ -244,6 +244,13 @@ function removeFilter($tipo, $id) {
             justify-content: space-between;
             padding: 10px 20px;
             background-color: #f8f9fa;
+            position: fixed;
+            top: 0; /* Mantiene la barra en la parte superior */
+            left: 0;
+            width: 100%; /* Ocupa todo el ancho */
+            max-width: 99%;
+            z-index: 600; /* Asegura que esté por encima de otros elementos */
+
         }
         .icons {
             display: flex;
@@ -261,6 +268,7 @@ function removeFilter($tipo, $id) {
         }
         .cart-icon {
             position: relative;
+            margin-right: 30px;
         }
         .cart-badge {
             position: absolute;
@@ -272,6 +280,23 @@ function removeFilter($tipo, $id) {
             padding: 2px 6px;
             font-size: 0.8em;
         }
+        .inst, .pint {
+            width: 1em;
+            height: auto;
+            vertical-align: middle;
+        }
+
+        .redes {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .redes p {
+            flex: 1; /* Ocupa el espacio disponible */
+            text-align: center; /* Centra el texto */
+        }
+
     </style>
 </head>
 <body>
@@ -287,7 +312,7 @@ function removeFilter($tipo, $id) {
         <form method="GET" action="">
             <div class="search-container">
                 <input type="text" name="buscar" placeholder="Buscar productos..." 
-                       value="<?= isset($_GET['buscar']) ? htmlspecialchars($_GET['buscar']) : '' ?>" required>
+                        value="<?= isset($_GET['buscar']) ? htmlspecialchars($_GET['buscar']) : '' ?>" required>
                 <button type="submit"><i class="fas fa-search"></i></button>
             </div>
         </form>
@@ -303,7 +328,12 @@ function removeFilter($tipo, $id) {
             </a>
         </div>
     </header>
-
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
     <div class="breadcrumb">
         <a href="#">Inicio</a> / <span>Productos</span>
     </div>
@@ -475,7 +505,11 @@ function removeFilter($tipo, $id) {
     </main>
 
     <footer>
+        <div class="redes">
         <p>© 2025 SkyNET. Todos los derechos reservados.</p>
+        <a href="https://www.instagram.com/skynet.oficiall/" > <img src='/Backend/Productos/imagenes/instagram.png' class="inst"></a>
+        <a href="https://es.pinterest.com/slskynet/"> <img src='/Backend/Productos/imagenes/pinterest.png' class="pint"></a>
+        </div>
     </footer>
 
     <script>

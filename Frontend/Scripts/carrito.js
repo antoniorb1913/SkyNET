@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const cartPopup = document.createElement('div');
     cartPopup.className = 'cart-popup';
     cartPopup.innerHTML = `
+    <div class="carrito">
         <div class="cart-popup-header">
             <h3>Mi Carrito</h3>
             <button class="close-cart"><i class="fas fa-times"></i></button>
@@ -26,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <button class="checkout">Finalizar compra</button>
             </div>
         </div>
+    </div>
     `;
     document.body.appendChild(cartPopup);
 

@@ -1,5 +1,22 @@
 <!DOCTYPE html>
 <html lang="es">
+<style>
+        .inst, .pint {
+        width: 1em;
+        height: auto;
+        vertical-align: middle;
+        }
+        .redes {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .redes p {
+            flex: 1; /* Ocupa el espacio disponible */
+            text-align: center; /* Centra el texto */
+        }
+</style>
 <head>
     <meta charset="UTF-8">
     <title>SkyNet | Donde el cielo toca el infinito</title>
@@ -53,7 +70,11 @@
     </section>
 
     <footer>
+        <div class="redes">
         <p>&copy; <?php echo date("Y"); ?> SkynetTech - Todos los derechos reservados</p>
+        <a href="https://www.instagram.com/skynet.oficiall/" > <img src='/Backend/Productos/imagenes/instagram.png' class="inst"></a>
+        <a href="https://es.pinterest.com/slskynet/"> <img src='/Backend/Productos/imagenes/pinterest.png' class="pint"></a>
+        </div>
     </footer>
 </body>
 </html>
