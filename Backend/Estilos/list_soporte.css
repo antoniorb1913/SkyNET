@@ -96,3 +96,6 @@ tr:nth-child(even) {
 width: 18px;
 height: 18px;
 }
+td:nth-child(8) {
+    text-align: center;
+}
