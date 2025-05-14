@@ -1,38 +1,39 @@
 <?php
     require_once(__DIR__ . '/../../conectordb/conectordb.php');
 
-    $consulta_historial = "SELECT 
-    ventas.id AS IDVenta,  -- Agregamos la columna IDVenta
-    clientes.nombre AS NombreCliente,
-    GROUP_CONCAT(CONCAT(productos.nombre, ' (x', linea_carrito.cantidad, ') ', linea_carrito.precio, '€') 
-    ORDER BY productos.nombre SEPARATOR '<br>') AS ProductosComprados,
-    ventas.fecha_previstaEntrega AS FechaEntrega,
-    SUM(linea_carrito.cantidad * linea_carrito.precio) AS Subtotal,
-    impuestos.porcentaje AS IVA,
-    SUM(ventas.importe_total) AS Total
-    FROM clientes
-    JOIN carrito ON clientes.id = carrito.cliente_id
-    JOIN linea_carrito ON carrito.id = linea_carrito.carrito_id
-    JOIN productos ON linea_carrito.producto_id = productos.id
-    JOIN ventas ON carrito.id = ventas.carrito_id
-    JOIN impuestos ON ventas.impuesto_id = impuestos.id
-    GROUP BY ventas.id, clientes.id, impuestos.porcentaje
-    ORDER BY clientes.nombre, ventas.fecha_previstaEntrega";
+    require_once(__DIR__ . '/../../conectordb/conectordb.php');
 
-$filtro_nombre = '';
-
-if(isset($_REQUEST) && count($_REQUEST) > 0) {
-    $condiciones = " WHERE 1";  // Se usa "1" para evitar errores de sintaxis
-    $filtro_nombre = $_REQUEST['nombre'];
-
-    if ($filtro_nombre){
-        $condiciones .= " AND clientes.nombre LIKE '%".$filtro_nombre."%'";
+    $condiciones = "";
+    
+    if(isset($_REQUEST) && count($_REQUEST) > 0) {
+        $filtro_nombre = $_REQUEST['nombre'];
+    
+        if ($filtro_nombre){
+            $condiciones .= " WHERE clientes.nombre LIKE '%" . mysqli_real_escape_string($conexion, $filtro_nombre) . "%'";
+        }
     }
-
-    $consulta_historial .= $condiciones;
-}
-
-$listado_historial = mysqli_query($conexion, $consulta_historial);
+    
+    $consulta_historial = "SELECT 
+        ventas.id AS IDVenta,
+        clientes.nombre AS NombreCliente,
+        GROUP_CONCAT(CONCAT(productos.nombre, ' (x', linea_carrito.cantidad, ') ', linea_carrito.precio, '€') 
+        ORDER BY productos.nombre SEPARATOR '<br>') AS ProductosComprados,
+        ventas.fecha_previstaEntrega AS FechaEntrega,
+        SUM(linea_carrito.cantidad * linea_carrito.precio) AS Subtotal,
+        impuestos.porcentaje AS IVA,
+        SUM(ventas.importe_total) AS Total
+        FROM clientes
+        JOIN carrito ON clientes.id = carrito.cliente_id
+        JOIN linea_carrito ON carrito.id = linea_carrito.carrito_id
+        JOIN productos ON linea_carrito.producto_id = productos.id
+        JOIN ventas ON carrito.id = ventas.carrito_id
+        JOIN impuestos ON ventas.impuesto_id = impuestos.id
+        $condiciones
+        GROUP BY ventas.id, clientes.id, impuestos.porcentaje
+        ORDER BY clientes.nombre, ventas.fecha_previstaEntrega";
+    
+    $listado_historial = mysqli_query($conexion, $consulta_historial);
+    
 ?>
 <!DOCTYPE html>
 <html lang="es">
