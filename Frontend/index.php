@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>SkyNet | Donde el cielo toca el infinito</title>
-    <link rel="stylesheet" href="../Estilos/index.css"/>
+    <link rel="stylesheet" href="Estilos/index.css"/>
 </head>
 <body>
     <header class="hero">
-        <img src="../LOGO/logoblanco.png" alt="SkyNet Logo">
+        <img src="LOGO/logoblanco.png" alt="SkyNet Logo">
         <h1>"SkyNet, donde el cielo toca el infinito"</h1>
         <p>Innovación, tecnología y soluciones inteligentes para tu vida digital.</p>
-        <a href="soporte.php">Contáctanos</a>
-        <a href="interfaz.php">Explorar Catálogo</a>
+        <a href="PaginaWeb/soporte.php">Contáctanos</a>
+        <a href="PaginaWeb/interfaz.php">Explorar Catálogo</a>
     </header>
 
     <section class="features">
