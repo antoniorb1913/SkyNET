@@ -151,7 +151,7 @@ $conn->close();
             <?php endif; ?>
             <a href="#" id="cart-icon" class="cart-icon">
                 <i class="fas fa-shopping-cart"></i>
-                <span id="cart-badge" class="cart-badge" style="font-size: 15px; width: 38%; heght: auto;></span>
+                <span id="cart-badge" class="cart-badge" style="font-size: 15px; width: 38%; heght: auto;"></span>
             </a>
         </div>
     </header>
