@@ -232,13 +232,6 @@ function buildFilterUrl($nuevos_params = []) {
                                 <i class="fas fa-shopping-cart"></i> Añadir al carrito
                             </button>
                         </div>
-                        
-                        <div class="product-share">
-                            <span>Compartir:</span>
-                            <a href="#" class="share-btn"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="share-btn"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="share-btn"><i class="fab fa-pinterest"></i></a>
-                        </div>
                     </div>
                 </div>
                 
