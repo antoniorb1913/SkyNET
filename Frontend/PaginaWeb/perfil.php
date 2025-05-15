@@ -72,7 +72,14 @@ $conn->close();
             align-items: center;
             justify-content: space-between;
             padding: 10px 20px;
-            background-color: #f8f9fa;
+            background-color:rgb(255, 255, 255);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            max-width: 99%;
+            z-index: 600;
+
         }
         .icons {
             display: flex;
@@ -90,6 +97,7 @@ $conn->close();
         }
         .cart-icon {
             position: relative;
+            margin-right: 30px;
         }
         .cart-badge {
             position: absolute;
@@ -143,7 +151,7 @@ $conn->close();
             <?php endif; ?>
             <a href="#" id="cart-icon" class="cart-icon">
                 <i class="fas fa-shopping-cart"></i>
-                <span id="cart-badge" class="cart-badge"></span>
+                <span id="cart-badge" class="cart-badge"style="width: 45%; heght: auto;"></span>
             </a>
         </div>
     </header>
