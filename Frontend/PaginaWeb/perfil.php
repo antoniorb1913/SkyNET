@@ -215,7 +215,7 @@ $conn->close();
                             <table class="specs-table">
                                 <thead>
                                     <tr>
-                                        <th>ID Venta</th>
+                                        <th>ID</th>
                                         <th>Fecha</th>
                                         <th>Productos</th>
                                         <th>Total</th>
