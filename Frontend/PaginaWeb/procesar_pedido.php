@@ -213,7 +213,7 @@ try {
     $fecha_prevista = date('Y-m-d H:i:s', strtotime('+5 weekdays'));
 
     // Crear venta
-    $sql_venta = "INSERT INTO ventas (importe, carrito_id, impuesto_id, importe_total, fecha_previstaEntrega) VALUES (?, ?, ?, ?, ?)";
+    $sql_venta = "INSERT INTO ventas (importe, carrito_id, impuesto_id, importe_total, fecha_previstaEntrega, created_at) VALUES (?, ?, ?, ?, ?, NOW())";
     $stmt_venta = $conn->prepare($sql_venta);
     $stmt_venta->bind_param("diids", $importe_total, $carrito_id, $impuesto_id, $importe_total_con_impuesto, $fecha_prevista);
 
