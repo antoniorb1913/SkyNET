@@ -26,7 +26,8 @@ $filtro_nombre='';
 
 if(isset($_REQUEST) && count($_REQUEST)>0) {
     $condiciones = " where true";
-    $filtro_nombre = $_REQUEST['nombre'];
+    $filtro_nombre = isset($_REQUEST['nombre']) ? $_REQUEST['nombre'] : '';
+
 
 
     if ($filtro_nombre){
