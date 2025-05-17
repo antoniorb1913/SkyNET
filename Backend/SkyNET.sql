@@ -144,7 +144,7 @@ alter table ventas add foreign key (impuesto_id) references impuestos(id);
 alter table direcciones add foreign key (cliente_id) references clientes(id);
 
 
-INSERT INTO admin (nombre, contrasena) values ('admin', '@dminSkN');
+INSERT INTO admin (nombre, email, contrasena) values ('admin','admin@admin.es', '@dminSkN');
 
 /* CATEGORIAS */
 
