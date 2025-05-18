@@ -64,10 +64,10 @@ create table linea_carrito (
 
 create table ventas ( /*asociada a un carrito*/
     id int primary key auto_increment,
-    importe float(6,2),
+    importe float(8,2),
     carrito_id int,
     impuesto_id int,
-    importe_total float(6,2),
+    importe_total float(8,2),
     fecha_previstaEntrega date,
     created_at datetime
 

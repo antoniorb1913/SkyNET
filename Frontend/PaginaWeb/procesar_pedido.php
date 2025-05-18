@@ -151,6 +151,7 @@ try {
 
         if ($producto['stock'] < $cantidad) {
             throw new Exception("No hay suficiente stock para el producto ID " . $producto_id . ". Disponible: " . $producto['stock']);
+            
         }
 
         if (abs($producto['precio'] - $precio) > 0.01) {

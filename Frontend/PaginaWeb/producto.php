@@ -193,8 +193,16 @@ function buildFilterUrl($nuevos_params = []) {
                         <p class="product-category">Categoría: <strong><?= htmlspecialchars($producto['categoria']) ?></strong></p>
                         <?php endif; ?>
                         
+                        <?php 
+                        // Check stock from the database
+                        $inStock = isset($producto['stock']) && $producto['stock'] > 0;
+                        ?>
                         <div class="product-meta">
-                            <div class="availability">Disponibilidad: <span class="in-stock">En stock</span></div>
+                            <div class="availability">Disponibilidad: 
+                                <span class="<?= $inStock ? 'in-stock' : 'out-of-stock' ?>">
+                                    <?= $inStock ? 'En stock' : 'Agotado' ?>
+                                </span>
+                            </div>
                             <div class="product-code">Código: <?= htmlspecialchars($producto['id']) ?></div>
                         </div>
                         
@@ -228,7 +236,7 @@ function buildFilterUrl($nuevos_params = []) {
                                 <input type="number" value="1" min="1" max="99" id="quantity" class="quantity-input">
                                 <button class="quantity-btn increase">+</button>
                             </div>
-                            <button class="add-to-cart-btn" id="btn-comprar">
+                            <button class="add-to-cart-btn" id="btn-comprar" <?= !$inStock ? 'disabled' : '' ?>>
                                 <i class="fas fa-shopping-cart"></i> Añadir al carrito
                             </button>
                         </div>
@@ -292,56 +300,66 @@ function buildFilterUrl($nuevos_params = []) {
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const tabButtons = document.querySelectorAll('.tab-btn');
-            const tabPanes = document.querySelectorAll('.tab-pane');
-            
-            tabButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    tabButtons.forEach(btn => btn.classList.remove('active'));
-                    tabPanes.forEach(pane => pane.classList.remove('active'));
-                    this.classList.add('active');
-                    const tabId = this.getAttribute('data-tab');
-                    document.getElementById(tabId).classList.add('active');
-                });
-            });
-            
-            const decreaseBtn = document.querySelector('.quantity-btn.decrease');
-            const increaseBtn = document.querySelector('.quantity-btn.increase');
-            const quantityInput = document.querySelector('.quantity-input');
-            
-            if (decreaseBtn && increaseBtn && quantityInput) {
-                decreaseBtn.addEventListener('click', function() {
-                    let value = parseInt(quantityInput.value);
-                    if (value > 1) {
-                        quantityInput.value = value - 1;
-                    }
-                });
-                
-                increaseBtn.addEventListener('click', function() {
-                    let value = parseInt(quantityInput.value);
-                    if (value < 99) {
-                        quantityInput.value = value + 1;
-                    }
-                });
-            }
+    document.addEventListener('DOMContentLoaded', function() {
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabPanes = document.querySelectorAll('.tab-pane');
+        const decreaseBtn = document.querySelector('.quantity-btn.decrease');
+        const increaseBtn = document.querySelector('.quantity-btn.increase');
+        const quantityInput = document.querySelector('.quantity-input');
+        const addToCartBtn = document.getElementById('btn-comprar');
+        const inStock = <?= $inStock ? 'true' : 'false' ?>; // Pass PHP stock status to JS
 
-            // Ensure cart icon works
-            const cartIcon = document.getElementById('cart-icon');
-            if (cartIcon) {
-                const newCartIcon = cartIcon.cloneNode(true);
-                cartIcon.parentNode.replaceChild(newCartIcon, cartIcon);
-                newCartIcon.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    if (typeof toggleCart === 'function') {
-                        toggleCart();
-                        console.log('Cart toggled');
-                    } else {
-                        console.error('toggleCart function not found in carrito.js');
-                    }
-                });
-            }
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabPanes.forEach(pane => pane.classList.remove('active'));
+                this.classList.add('active');
+                const tabId = this.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
         });
+
+        if (decreaseBtn && increaseBtn && quantityInput) {
+            decreaseBtn.disabled = !inStock; // Disable quantity buttons if out of stock
+            increaseBtn.disabled = !inStock;
+            quantityInput.disabled = !inStock;
+
+            decreaseBtn.addEventListener('click', function() {
+                if (!inStock) return; // Prevent interaction if out of stock
+                let value = parseInt(quantityInput.value);
+                if (value > 1) {
+                    quantityInput.value = value - 1;
+                }
+            });
+
+            increaseBtn.addEventListener('click', function() {
+                if (!inStock) return; // Prevent interaction if out of stock
+                let value = parseInt(quantityInput.value);
+                if (value < 99) {
+                    quantityInput.value = value + 1;
+                }
+            });
+        }
+
+        if (addToCartBtn) {
+            addToCartBtn.disabled = !inStock; // Disable button if out of stock
+        }
+
+        const cartIcon = document.getElementById('cart-icon');
+        if (cartIcon) {
+            const newCartIcon = cartIcon.cloneNode(true);
+            cartIcon.parentNode.replaceChild(newCartIcon, cartIcon);
+            newCartIcon.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (typeof toggleCart === 'function') {
+                    toggleCart();
+                    console.log('Cart toggled');
+                } else {
+                    console.error('toggleCart function not found in carrito.js');
+                }
+            });
+        }
+    });
     </script>
     <script src="../Scripts/carrito.js"></script>
 </body>
