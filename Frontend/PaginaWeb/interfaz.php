@@ -30,7 +30,7 @@ $filtros = [
     'mostrar' => isset($_GET['mostrar']) ? $_GET['mostrar'] : 12
 ];
 
-$sql = "SELECT p.*, c.nombre as categoria, m.nombre as marca 
+$sql = "SELECT p.id, p.nombre, p.descripcion, p.precio, p.stock, p.created_at, p.imagen, c.nombre as categoria, m.nombre as marca 
         FROM productos p 
         LEFT JOIN categorias c ON p.categoria_id = c.id 
         LEFT JOIN marcas m ON p.marca_id = m.id 
@@ -480,7 +480,14 @@ function removeFilter($tipo, $id) {
                                 <p><?= htmlspecialchars($producto['descripcion']) ?></p>
                             </div>
                             <p class="price">€<?= number_format($producto['precio'], 2, ',', '.') ?></p>
-                            <button>Añadir al carrito</button>
+                            <?php 
+                            $inStock = isset($producto['stock']) && $producto['stock'] > 0;
+                            ?>
+                            <div class="availability <?= $inStock ? 'in-stock' : 'out-of-stock' ?>">
+                                <?= $inStock ? 'En stock' : 'Agotado' ?>
+                            </div>
+                            </br>
+                            <button class="add-to-cart-btn" <?= !$inStock ? 'disabled' : '' ?>>Añadir al carrito</button>
                         </div>
                     <?php endforeach; ?>
                 <?php endif; ?>
