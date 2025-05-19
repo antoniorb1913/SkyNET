@@ -127,6 +127,8 @@ CREATE TABLE soporte (
 );
 
 
+INSERT INTO admin (nombre, email, contrasena, created_at) 
+VALUES ('admin', 'admin@skynet.com', '$2y$10$RvpSM2OAfqWjpg6sd68dzOoGHRyYa3E5hFETcpd6tMDZBeQP3Yt0y', NOW());
 
 alter table productos add imagen varchar(255);
 
