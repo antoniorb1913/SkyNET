@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
     .then(data => {
         if (!data.success) {
             alert('Error en el carrito: ' + data.message);
-            window.location.href = 'carrito.php';
+            window.location.href = 'interfaz.php';
             return;
         }
         
